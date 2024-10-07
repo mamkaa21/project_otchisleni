@@ -17,9 +17,9 @@ public partial class AddLetterPage : ContentPage
 		InitializeComponent();
 		DB = dB;
         ResignationLetter = new ResignationLetter();
-        Task.Run(async () => await  GetStudents());
         Reasons = new List<string>(new string[] {"По собственному желанию", "Академическая задолженность" });
         BindingContext = this;
+        Task.Run(async () => await GetStudents());
     }
 
     private async Task GetStudents()

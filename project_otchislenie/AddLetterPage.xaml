@@ -9,7 +9,7 @@
         <Label Text="Дата подачи заявления"/>
         <DatePicker Date="{Binding ResignationLetter.Date}" />
         <Label Text="Студент"/>
-        <Picker ItemsSource="{Binding Students}" SelectedItem="{Binding Student.LastName}" />
+        <Picker ItemsSource="{Binding Students}" />
         <Button Text="Сохранить" Clicked="SaveLetter"/>
     </VerticalStackLayout>
 </ContentPage>
