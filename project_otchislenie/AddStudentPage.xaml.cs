@@ -30,4 +30,9 @@ public partial class AddStudentPage : ContentPage
     {
         OnPropertyChanged(nameof(Student));
     }
+
+    private void DebtsChanged(object sender, ValueChangedEventArgs e)
+    {
+        OnPropertyChanged(nameof (Student));
+    }
 }

@@ -4,7 +4,7 @@ namespace project_otchislenie;
 
 public partial class StudentPage : ContentPage
 {
-    public List<Student> Students { get; set; } = new();
+    public List<Student> Students { get; set; }
     public Student Student { get; set; }
     private DB DB = new();
     bool loaded = false;
