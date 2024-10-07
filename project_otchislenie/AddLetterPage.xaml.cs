@@ -25,6 +25,7 @@ public partial class AddLetterPage : ContentPage
     private async Task GetStudents()
     {
         //Debug.WriteLine("ûûûû");
+
         Students = await DB.GetListStudent();
         OnPropertyChanged(nameof(Students));
     }
