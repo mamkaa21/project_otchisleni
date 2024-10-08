@@ -9,7 +9,7 @@ public partial class AddLetterPage : ContentPage
     public Student Student { get; set; }
     public List<Student> Students { get; set; }
 
-    private DB DB = new();
+    private DB DB;
 
 
     public AddLetterPage(DB dB)
@@ -18,11 +18,11 @@ public partial class AddLetterPage : ContentPage
 		DB = dB;
         ResignationLetter = new ResignationLetter();
         Reasons = new List<string>(new string[] {"По собственному желанию", "Академическая задолженность" });
+        GetStudents();
         BindingContext = this;
-        Task.Run(async () => await GetStudents());
     }
 
-    private async Task GetStudents()
+    private async void GetStudents()
     {
         //Debug.WriteLine("ыыыы");
 
@@ -32,7 +32,14 @@ public partial class AddLetterPage : ContentPage
 
     private async void SaveLetter(object sender, EventArgs e)
     {
-        await DB.AddResignationLetter(ResignationLetter);
+        if (ResignationLetter.Id == 0)
+        {
+            await DB.AddResignationLetter(ResignationLetter);
+        }
+        else
+        {
+            await DB.EditResignationLetter(ResignationLetter);
+        }
         OnPropertyChanged(nameof(ResignationLetter));
         await Navigation.PopAsync();
     }

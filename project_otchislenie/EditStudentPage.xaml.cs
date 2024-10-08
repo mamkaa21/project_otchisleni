@@ -8,7 +8,7 @@ public partial class EditStudentPage : ContentPage
 
     public Student Student { get; set; }
 
-    private DB DB = new();
+    private DB DB;
 
 
     public EditStudentPage(Student student, DB dB)

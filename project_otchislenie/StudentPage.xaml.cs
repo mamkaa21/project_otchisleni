@@ -6,12 +6,13 @@ public partial class StudentPage : ContentPage
 {
     public List<Student> Students { get; set; }
     public Student Student { get; set; }
-    private DB DB = new();
+    private DB DB;
     bool loaded = false;
 
-    public StudentPage()
+    public StudentPage(DB db)
 	{
         InitializeComponent();
+        DB = db;
         GetData();
         BindingContext = this;  
 	}

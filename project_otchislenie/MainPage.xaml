@@ -16,20 +16,20 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label  Text="Заявление на отчисление" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" FontSize="25"/>
-        <ListView HeightRequest="80" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding ResignationLetters}" SelectedItem="{Binding ResignationLetter}" VerticalScrollBarVisibility="Always" >
+        <ListView HeightRequest="80" Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding ResignationLetters}" SelectedItem="{Binding ResignationLetter}" VerticalScrollBarVisibility="Always" >
             <ListView.ItemTemplate >
                 <DataTemplate>
                     <ViewCell >
                         <StackLayout>
-                            <Label Grid.Row="1" Text="{Binding Reasons.Title}"/>
+                            <Label Grid.Row="1" Text="{Binding Reason}"/>
                             <Label Grid.Row="2" Text="{Binding Date}"/>
-                            <Label Grid.Row="3" Text="{Binding Student.FirstName}"/>
+                            <Label Grid.Row="3" Text="{Binding StudentId}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="Список студентов" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OpenListStudent"/>
+        <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Text="Список студентов" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OpenListStudent"/>
         <Button Grid.Row="3" Grid.Column="0" Text="Создать заявление" Clicked="MakeNewLetter"/>
         <Button Grid.Row="3" Grid.Column="1" Text="Изменить заявление" Clicked="ChangeLetter"/>
         <Button Grid.Row="3" Grid.Column="2" Text="Удалить заявление" Clicked="DeleteLetter"/>

@@ -4,9 +4,12 @@
              x:Class="project_otchislenie.EditLetterPage"
              Title="EditLetterPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Label Text="Причина"/>
+        <Picker ItemsSource="{Binding Reasons}" SelectedItem="{Binding ResignationLetter.Reason}"/>
+        <Label Text="Дата подачи заявления"/>
+        <DatePicker Date="{Binding ResignationLetter.Date}" />
+        <Label Text="Студент"/>
+        <Picker ItemsSource="{Binding Students}" />
+        <Button Text="Сохранить" Clicked="SaveLetter"/>
     </VerticalStackLayout>
 </ContentPage>

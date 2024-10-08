@@ -10,7 +10,7 @@ namespace project_otchislenie
     {
         public int Id {  get; set; }
         public string Reason { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
         public int StudentId { get; set; }
     }
 }
