@@ -9,13 +9,9 @@ public partial class AddLetterPage : ContentPage
     public Student Student { get; set; }
     public List<Student> Students { get; set; }
 
-    private DB DB;
-
-
-    public AddLetterPage(DB dB)
+    public AddLetterPage()
 	{
 		InitializeComponent();
-		DB = dB;
         ResignationLetter = new ResignationLetter();
         Reasons = new List<string>(new string[] {"По собственному желанию", "Академическая задолженность" });
         GetStudents();
@@ -26,8 +22,8 @@ public partial class AddLetterPage : ContentPage
     {
         //Debug.WriteLine("ыыыы");
 
-        Students = await DB.GetListStudent();
-        if (ResignationLetter.Student != null)
+        Students = await DB.GetInstance().GetListStudent();
+        if (ResignationLetter.StudentId != 0)
         {
             Student = Students.FirstOrDefault(s => s.Id == ResignationLetter.StudentId);
         }
@@ -39,10 +35,9 @@ public partial class AddLetterPage : ContentPage
     {
         if (Student != null)
         {
-            ResignationLetter.Student = Student;
-            ResignationLetter.StudentId = ResignationLetter.Student.Id;
+            ResignationLetter.StudentId = Student.Id;
         }
-        await DB.AddResignationLetter(ResignationLetter);
+        await DB.GetInstance().AddResignationLetter(ResignationLetter);
         OnPropertyChanged(nameof(ResignationLetter));
         await Navigation.PopAsync();
     }

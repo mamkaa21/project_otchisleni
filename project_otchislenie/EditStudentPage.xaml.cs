@@ -5,16 +5,11 @@ namespace project_otchislenie;
 
 public partial class EditStudentPage : ContentPage
 {
-
     public Student Student { get; set; }
 
-    private DB DB;
-
-
-    public EditStudentPage(Student student, DB dB)
+    public EditStudentPage(Student student)
     {
         InitializeComponent();
-        DB = dB;
         Student = student;
         BindingContext = this;
     }
@@ -23,7 +18,7 @@ public partial class EditStudentPage : ContentPage
     {
         if (Student.Id != 0)
         {
-            await DB.EditStudent(Student);
+            await DB.GetInstance().EditStudent(Student);
             OnPropertyChanged(nameof(Student));
         }
         await Navigation.PopAsync();

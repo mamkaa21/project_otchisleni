@@ -29,7 +29,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="Список студентов" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OpenListStudent"/>
         <Button Grid.Row="3" Grid.Column="0" Text="Создать заявление" Clicked="MakeNewLetter"/>
         <Button Grid.Row="3" Grid.Column="1" Text="Изменить заявление" Clicked="ChangeLetter"/>
         <Button Grid.Row="3" Grid.Column="2" Text="Удалить заявление" Clicked="DeleteLetter"/>

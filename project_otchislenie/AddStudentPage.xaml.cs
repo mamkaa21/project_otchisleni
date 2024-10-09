@@ -7,20 +7,18 @@ public partial class AddStudentPage : ContentPage
 {
     public Student Student { get; set; }
 
-    private DB DB = new();
 
 
-    public AddStudentPage(DB dB)
+    public AddStudentPage()
 	{
 		InitializeComponent();
-        DB = dB;
         Student = new Student();
         BindingContext = this;
     }
 
     private async void SaveStudent(object sender, EventArgs e)
     {
-        await DB.AddStudent(Student);
+        await DB.GetInstance().AddStudent(Student);
         OnPropertyChanged(nameof(Student));
         await Navigation.PopAsync();
 

@@ -6,13 +6,10 @@ public partial class StudentPage : ContentPage
 {
     public List<Student> Students { get; set; }
     public Student Student { get; set; }
-    private DB DB;
-    bool loaded = false;
 
-    public StudentPage(DB db)
+    public StudentPage()
 	{
         InitializeComponent();
-        DB = db;
         GetData();
         BindingContext = this;  
 	}
@@ -24,24 +21,24 @@ public partial class StudentPage : ContentPage
 
     private async void GetData()
     {
-        Students = await DB.GetListStudent();
+        Students = await DB.GetInstance().GetListStudent();
         OnPropertyChanged(nameof(Students));
     }
 
     private async void AddStudent(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AddStudentPage(DB));
+        await Navigation.PushAsync(new AddStudentPage());
         GetData();
     }
 
     private async void EditStudent(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new EditStudentPage(Student, DB));
+        await Navigation.PushAsync(new EditStudentPage(Student));
     }
 
     private async void DeleteStudent(object sender, EventArgs e)
     {
-        await DB.DeleteStudent(Student);
+        await DB.GetInstance().DeleteStudent(Student);
         GetData();
 
     }

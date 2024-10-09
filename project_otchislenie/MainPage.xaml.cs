@@ -1,6 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace project_otchislenie
 {
@@ -13,11 +14,8 @@ namespace project_otchislenie
         public Student Student { get; set; }
 
 
-        private DB DB = new DB();
-
         public MainPage()
         {
-            GetData();
             InitializeComponent();
             BindingContext = this;
         }
@@ -26,40 +24,36 @@ namespace project_otchislenie
         {
             GetData();
         }
-        private async void GetStudents()
-        {
-            Students = await DB.GetListStudent();
-            if (ResignationLetter.Student != null)
-            {
-                Student = Students.FirstOrDefault(s => s.Id == ResignationLetter.StudentId);
-            }
-            OnPropertyChanged(nameof(Students));
-            OnPropertyChanged(nameof(Student));
-        }
         private async void GetData()
         {
-            ResignationLetters = await DB.GetListResignationLetter();
+            ResignationLetters = await DB.GetInstance().GetListResignationLetter();
             OnPropertyChanged(nameof(ResignationLetters));
         }
         private async void OpenListStudent(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new StudentPage(DB));
+           
+            await Navigation.PushAsync(new StudentPage());
         }
 
         private async void MakeNewLetter(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddLetterPage(DB));
+            await Navigation.PushAsync(new AddLetterPage());
         }
 
         private async void DeleteLetter(object sender, EventArgs e)
         {
-            await DB.DeleteResignationLetterById(ResignationLetter);
+            await DB.GetInstance().DeleteResignationLetterById(ResignationLetter);
             GetData();
         }
 
         private async void ChangeLetter(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new EditLetterPage(ResignationLetter, DB));
+            Dictionary<string, object> dictionary = new Dictionary<string, object>
+            {
+                {"ResignationLetter", ResignationLetter}
+            };
+            await Shell.Current.GoToAsync("ResignationLetter", dictionary);
+            //await Navigation.PushAsync(new EditLetterPage(ResignationLetter));
         }
     }
 

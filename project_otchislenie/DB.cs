@@ -12,20 +12,22 @@ namespace project_otchislenie
 {
     public class DB
     {
+        private static DB instance;
+
         public List<ResignationLetter> ResignationLetters { get; set; }
         public List<Student> Students { get; set; }
         public Student Student { get; set; }
         public ResignationLetter ResignationLetter { get; set; }
 
-        private int LastStudentId = 0;
-        private int LastResignationLetterId = 0;
+        private int LastStudentId = 1;
+        private int LastResignationLetterId = 1;
 
         public DB()
         {
             Students = new List<Student>();
             Students.Add(new Student
             {
-                Id = 0,
+                Id = 1,
                 FirstName = "Мария",
                 LastName = "Розина",
                 Age = 18,
@@ -34,13 +36,18 @@ namespace project_otchislenie
             ResignationLetters = new List<ResignationLetter>();
             ResignationLetters.Add(new ResignationLetter
             {
-                Id = 0,
+                Id = 1,
                 Reason = "По собственному желанию",
                 Date = new DateTime(2024, 9, 30, 17, 40, 20),
-                StudentId = 0
+                StudentId = 1
             });
         }
-
+        public static DB GetInstance()
+        {
+            if (instance == null)
+                instance = new DB();
+            return instance;
+        }
         public async Task<List<ResignationLetter>> GetListResignationLetter()
         {
             await Task.Delay(100);

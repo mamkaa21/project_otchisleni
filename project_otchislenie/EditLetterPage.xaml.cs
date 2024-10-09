@@ -1,28 +1,37 @@
 namespace project_otchislenie;
 
+[QueryProperty (nameof(ResignationLetter), "ResignationLetter")]
 public partial class EditLetterPage : ContentPage
 {
-    public ResignationLetter ResignationLetter { get; set; }
+    private ResignationLetter resignationLetter;
+
+    public ResignationLetter ResignationLetter
+    {
+        get => resignationLetter;
+        set
+        {
+            resignationLetter = value;
+            OnPropertyChanged(nameof(ResignationLetter));
+        }
+    }
+
     public List<string> Reasons { get; set; }
     public Student Student { get; set; }
     public List<Student> Students { get; set; }
 
-    private DB DB;
 
-    public EditLetterPage(ResignationLetter resignationLetter, DB db)
+    public EditLetterPage()
 	{
 		InitializeComponent();
-        DB = db;
-        ResignationLetter = resignationLetter;
-        Reasons = new List<string>(new string[] { "По собственному желанию", "Академическая задолженность" });
+        Reasons = new List<string> { "По собственному желанию", "Академическая задолженность" };
         GetStudents();
         BindingContext = this;
 
     }
     private async void GetStudents()
     {
-        Students = await DB.GetListStudent();
-        if (ResignationLetter.Student != null)
+        Students = await DB.GetInstance().GetListStudent();
+        if (ResignationLetter.StudentId != 0)
         {
             Student = Students.FirstOrDefault(s => s.Id == ResignationLetter.StudentId);
         }
@@ -33,12 +42,11 @@ public partial class EditLetterPage : ContentPage
     {
         if (Student != null)
         {
-            ResignationLetter.Student = Student;
-            ResignationLetter.StudentId = ResignationLetter.Student.Id;
+            ResignationLetter.StudentId = Student.Id;
         }
         if (ResignationLetter.Id != 0)
         {
-            await DB.EditResignationLetter(ResignationLetter);
+            await DB.GetInstance().EditResignationLetter(ResignationLetter);
             OnPropertyChanged(nameof(ResignationLetter));
 
         }
