@@ -25,11 +25,16 @@ public partial class EditStudentPage : ContentPage
         {
             await DB.EditStudent(Student);
             OnPropertyChanged(nameof(Student));
-            await Navigation.PopAsync();
         }
+        await Navigation.PopAsync();
     }
 
     private void AgeChanged(object sender, ValueChangedEventArgs e)
+    {
+        OnPropertyChanged(nameof(Student));
+    }
+
+    private void DebtsChanged(object sender, ValueChangedEventArgs e)
     {
         OnPropertyChanged(nameof(Student));
     }

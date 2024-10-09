@@ -27,19 +27,22 @@ public partial class AddLetterPage : ContentPage
         //Debug.WriteLine("ûûûû");
 
         Students = await DB.GetListStudent();
+        if (ResignationLetter.Student != null)
+        {
+            Student = Students.FirstOrDefault(s => s.Id == ResignationLetter.StudentId);
+        }
         OnPropertyChanged(nameof(Students));
+        OnPropertyChanged(nameof(Student));
     }
 
     private async void SaveLetter(object sender, EventArgs e)
     {
-        if (ResignationLetter.Id == 0)
+        if (Student != null)
         {
-            await DB.AddResignationLetter(ResignationLetter);
+            ResignationLetter.Student = Student;
+            ResignationLetter.StudentId = ResignationLetter.Student.Id;
         }
-        else
-        {
-            await DB.EditResignationLetter(ResignationLetter);
-        }
+        await DB.AddResignationLetter(ResignationLetter);
         OnPropertyChanged(nameof(ResignationLetter));
         await Navigation.PopAsync();
     }

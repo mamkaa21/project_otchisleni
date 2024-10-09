@@ -9,6 +9,9 @@
             <Entry Text="{Binding Student.FirstName}"/>
             <Label Text="Фамилия"/>
             <Entry Text="{Binding Student.LastName}"/>
+            <Label Text="Долги"/>
+            <Stepper Value="{Binding Student.Debts}" ValueChanged="DebtsChanged"/>
+            <Label Text="{Binding Student.Debts}"/>
             <Label Text="Возраст"/>
             <Slider x:Name="slider" Minimum="15" Maximum="99" Value="{Binding Student.Age}" ValueChanged="AgeChanged" />
             <Label Text="{Binding Student.Age}"/>

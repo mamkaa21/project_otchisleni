@@ -16,7 +16,7 @@ namespace project_otchislenie
 
         public override string ToString()
         {
-            return LastName;
+            return $"{LastName} {FirstName}";
         }
     }
 }

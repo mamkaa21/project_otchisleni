@@ -17,15 +17,15 @@ namespace project_otchislenie
         public Student Student { get; set; }
         public ResignationLetter ResignationLetter { get; set; }
 
-        private int LastStudentId;
-        private int LastResignationLetterId;
+        private int LastStudentId = 0;
+        private int LastResignationLetterId = 0;
 
         public DB()
         {
             Students = new List<Student>();
             Students.Add(new Student
             {
-                Id = LastStudentId,
+                Id = 0,
                 FirstName = "Мария",
                 LastName = "Розина",
                 Age = 18,
@@ -34,10 +34,10 @@ namespace project_otchislenie
             ResignationLetters = new List<ResignationLetter>();
             ResignationLetters.Add(new ResignationLetter
             {
-                Id = LastResignationLetterId,
+                Id = 0,
                 Reason = "По собственному желанию",
                 Date = new DateTime(2024, 9, 30, 17, 40, 20),
-                StudentId = LastStudentId
+                StudentId = 0
             });
         }
 
@@ -96,7 +96,7 @@ namespace project_otchislenie
             await Task.Delay(100);
             ResignationLetter newResignationLetter = new ResignationLetter()
             {
-                Id = LastResignationLetterId++,
+                Id = ++LastResignationLetterId,
                 Reason = resignationLetter.Reason,
                 Date = resignationLetter.Date,
                 StudentId= resignationLetter.StudentId
@@ -110,7 +110,7 @@ namespace project_otchislenie
             await Task.Delay(100);
             Student getStudent = new Student()
             {
-                Id = LastStudentId++,
+                Id = ++LastStudentId,
                 FirstName = student.FirstName,
                 LastName = student.LastName,
                 Age = student.Age,

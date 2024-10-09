@@ -10,6 +10,7 @@ namespace project_otchislenie
         public List<ResignationLetter> ResignationLetters { get; set; }
         public ResignationLetter ResignationLetter { get; set; }
         public List<Student> Students { get; set; }
+        public Student Student { get; set; }
 
 
         private DB DB = new DB();
@@ -25,7 +26,16 @@ namespace project_otchislenie
         {
             GetData();
         }
-
+        private async void GetStudents()
+        {
+            Students = await DB.GetListStudent();
+            if (ResignationLetter.Student != null)
+            {
+                Student = Students.FirstOrDefault(s => s.Id == ResignationLetter.StudentId);
+            }
+            OnPropertyChanged(nameof(Students));
+            OnPropertyChanged(nameof(Student));
+        }
         private async void GetData()
         {
             ResignationLetters = await DB.GetListResignationLetter();
