@@ -17,17 +17,17 @@
         </Grid.ColumnDefinitions>
         <Label  Text="Заявление на отчисление" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" FontSize="25"/>
         <ListView HeightRequest="80" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding ResignationLetters}" SelectedItem="{Binding ResignationLetter}" VerticalScrollBarVisibility="Always" >
-            <ListView.ItemTemplate >
+            <!--<ListView.ItemTemplate >
                 <DataTemplate>
-                    <ViewCell >
+                    <ViewCell>
                         <StackLayout>
                             <Label Grid.Row="1" Text="{Binding Reason}" HeightRequest="2"/>
                             <Label Grid.Row="2" Text="{Binding Date}"/>
-                            <Label Grid.Row="3" Text="{Binding Student}"/>
+                            <Label Grid.Row="3" Text="{Binding StudentId}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
-            </ListView.ItemTemplate>
+            </ListView.ItemTemplate>-->
         </ListView>
         <Button Grid.Row="3" Grid.Column="0" Text="Создать заявление" Clicked="MakeNewLetter"/>
         <Button Grid.Row="3" Grid.Column="1" Text="Изменить заявление" Clicked="ChangeLetter"/>

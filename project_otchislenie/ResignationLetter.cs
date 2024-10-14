@@ -13,5 +13,9 @@ namespace project_otchislenie
         public DateTime Date { get; set; } = DateTime.Now;
         public int StudentId { get; set; }
 
+        public override string ToString()
+        {
+            return $"{Reason}, {Date}, {StudentId}";
+        }
     }
 }

@@ -4,9 +4,6 @@
              x:Class="project_otchislenie.LoginPage"
              Title="LoginPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+       
     </VerticalStackLayout>
 </ContentPage>
