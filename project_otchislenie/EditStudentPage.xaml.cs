@@ -2,18 +2,43 @@ using Microsoft.Maui.Controls;
 using System.ComponentModel;
 
 namespace project_otchislenie;
-
+[QueryProperty (nameof(Student), "Student")]
 public partial class EditStudentPage : ContentPage
 {
-    public Student Student { get; set; }
+    private Student student;
+    public Student Student 
+    { 
+        get => student; 
+        set 
+        { 
+            student = value;
+            OnPropertyChanged(nameof(Student));
+        }
+    }
+    
+    //private int studentId;
+    //public int StudentId { get => studentId; 
+    //    set 
+    //    {
+    //        studentId = value;
+    //        GetStudentById(studentId);
+    //    } }
 
-    public EditStudentPage(Student student)
+    //private async void GetStudentById(int studentId)
+    //{
+    //    Student = await DB.GetInstance().GetStudentById(studentId);
+    //}
+
+    public EditStudentPage()
     {
         InitializeComponent();
-        Student = student;
         BindingContext = this;
     }
+    //public async void ApplyQueryAttributes(IDictionary<string, object> query)
+    //{
+    //    //Student.Id = query["StudentId"] as Student;
 
+    //}
     private async void SaveStudent(object sender, EventArgs e)
     {
         if (Student.Id != 0)

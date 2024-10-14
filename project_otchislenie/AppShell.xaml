@@ -15,43 +15,27 @@
         </Tab>
        
     </TabBar>
-    
-    <FlyoutItem Title="ff">
 
-        <Tab Title="Home">
+    <FlyoutItem Title="Home">
+        <Tab Title="Просмотр">
             <ShellContent 
-                Title="Home"
+                Title="Заявления"
                 ContentTemplate="{DataTemplate local:MainPage}"
                 Route="MainPage" />
             <ShellContent
-                Title="NoHome"
+                Title="Студенты"
                 ContentTemplate="{DataTemplate local:StudentPage}"
                 Route="StudentPage" />
         </Tab>
-        <Tab Title="NoHome">
+        <Tab Title="Добавления">
             <ShellContent 
-                Title="Home"
-                ContentTemplate="{DataTemplate local:MainPage}"
-                Route="MainPage" />
+                Title="Заявления"
+                ContentTemplate="{DataTemplate local:AddLetterPage}"
+                Route="AddLetterPage" />
             <ShellContent
-                Title="NoHome"
-                ContentTemplate="{DataTemplate local:StudentPage}"
-                Route="StudentPage" />
+                Title="Студенты"
+                ContentTemplate="{DataTemplate local:AddStudentPage}"
+                Route="AddStudentPage" />
         </Tab>
-        <ShellContent 
-     Title="1"
-     ContentTemplate="{DataTemplate local:AddStudentPage}"
-     Route="AddStudentPage" />
     </FlyoutItem>
-    <FlyoutItem Title="ff">
-        <ShellContent 
-Title="1"
-ContentTemplate="{DataTemplate local:AddStudentPage}"
-Route="AddStudentPage" />
-       
-    </FlyoutItem>
-
-   
-
-
 </Shell>

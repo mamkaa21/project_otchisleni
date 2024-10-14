@@ -13,9 +13,17 @@ namespace project_otchislenie
         public DateTime Date { get; set; } = DateTime.Now;
         public int StudentId { get; set; }
 
+        public Student Student { get; private set; }
+
         public override string ToString()
         {
-            return $"{Reason}, {Date}, {StudentId}";
+            
+            return $"{Reason}, {Date}, {Student?.LastName}";
+        }
+
+        public async void SetStudent()
+        {
+            Student = await DB.GetInstance().GetStudentById(StudentId);
         }
     }
 }

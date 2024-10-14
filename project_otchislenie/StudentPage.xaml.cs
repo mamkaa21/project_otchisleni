@@ -25,15 +25,17 @@ public partial class StudentPage : ContentPage
         OnPropertyChanged(nameof(Students));
     }
 
-    private async void AddStudent(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new AddStudentPage());
-        GetData();
-    }
 
     private async void EditStudent(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new EditStudentPage(Student));
+        ShellNavigationQueryParameters shellQuery = new ShellNavigationQueryParameters() 
+        {
+
+            {"Student", Student }
+        }
+        ;
+        await Shell.Current.GoToAsync("Student", shellQuery);
+        //await Navigation.PushAsync(new EditStudentPage(Student));
     }
 
     private async void DeleteStudent(object sender, EventArgs e)

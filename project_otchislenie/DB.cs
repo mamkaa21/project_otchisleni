@@ -14,10 +14,10 @@ namespace project_otchislenie
     {
         private static DB instance;
 
-        public List<ResignationLetter> ResignationLetters { get; set; }
-        public List<Student> Students { get; set; }
-        public Student Student { get; set; }
-        public ResignationLetter ResignationLetter { get; set; }
+        private List<ResignationLetter> ResignationLetters { get; set; }
+        private List<Student> Students { get; set; }
+        private Student Student { get; set; }
+        private ResignationLetter ResignationLetter { get; set; }
 
         private int LastStudentId = 1;
         private int LastResignationLetterId = 1;
@@ -51,6 +51,10 @@ namespace project_otchislenie
         public async Task<List<ResignationLetter>> GetListResignationLetter()
         {
             await Task.Delay(100);
+            foreach (var item in ResignationLetters)
+            {
+                item.SetStudent();
+            }
             return new List<ResignationLetter>(ResignationLetters);
         }
 

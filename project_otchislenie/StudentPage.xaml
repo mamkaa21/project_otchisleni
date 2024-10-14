@@ -3,25 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="project_otchislenie.StudentPage"
              Title="StudentPage">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Label  Text="Студенты" Grid.ColumnSpan="3" HorizontalTextAlignment="Center"/>
-        <ListView HeightRequest="80" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Students}" SelectedItem="{Binding Student}" VerticalScrollBarVisibility="Always" >
-            
+    <StackLayout>
+        <Label  Text="Студенты" HorizontalTextAlignment="Center"/>
+        <ListView HeightRequest="80"  ItemsSource="{Binding Students}" SelectedItem="{Binding Student}" VerticalScrollBarVisibility="Always" HorizontalScrollBarVisibility="Always" >
         </ListView>
-        <Button Grid.Row="3"  Grid.Column="2" Text="Добавить" Clicked="AddStudent"/>
-        <Button Text="Изменить" Grid.Row="3" Grid.Column="1" Clicked="EditStudent"/>
-        <Button Text="Удалить" Grid.Row="3" Clicked="DeleteStudent"/>
-    </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Text="Изменить"  Clicked="EditStudent"/>
+            <Button Grid.Column="1" Text="Удалить"  Clicked="DeleteStudent"/>
+        </Grid>
+    </StackLayout>
+    
 
 </ContentPage>

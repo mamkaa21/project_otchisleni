@@ -16,6 +16,7 @@ namespace project_otchislenie
 
         public MainPage()
         {
+            GetData();
             InitializeComponent();
             BindingContext = this;
         }
@@ -33,11 +34,6 @@ namespace project_otchislenie
         {
            
             await Navigation.PushAsync(new StudentPage());
-        }
-
-        private async void MakeNewLetter(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddLetterPage());
         }
 
         private async void DeleteLetter(object sender, EventArgs e)

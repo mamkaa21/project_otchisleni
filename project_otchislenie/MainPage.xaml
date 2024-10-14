@@ -2,35 +2,28 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="project_otchislenie.MainPage">
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Label  Text="Заявление на отчисление" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" FontSize="25"/>
-        <ListView HeightRequest="80" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding ResignationLetters}" SelectedItem="{Binding ResignationLetter}" VerticalScrollBarVisibility="Always" >
-            <!--<ListView.ItemTemplate >
+    <StackLayout>
+        <Label  Text="Заявление на отчисление" HorizontalTextAlignment="Center" FontSize="25"/>
+        <ListView ItemsSource="{Binding ResignationLetters}" SelectedItem="{Binding ResignationLetter}" VerticalScrollBarVisibility="Always" HorizontalScrollBarVisibility="Always">
+            <!--<ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout>
-                            <Label Grid.Row="1" Text="{Binding Reason}" HeightRequest="2"/>
-                            <Label Grid.Row="2" Text="{Binding Date}"/>
-                            <Label Grid.Row="3" Text="{Binding StudentId}"/>
+                        <StackLayout  >
+                            <Label Text="{Binding Reason}"  />
+                            <Label Text="{Binding Date}"/>
+                            <Label Text="{Binding Student?.LastName}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>-->
         </ListView>
-        <Button Grid.Row="3" Grid.Column="0" Text="Создать заявление" Clicked="MakeNewLetter"/>
-        <Button Grid.Row="3" Grid.Column="1" Text="Изменить заявление" Clicked="ChangeLetter"/>
-        <Button Grid.Row="3" Grid.Column="2" Text="Удалить заявление" Clicked="DeleteLetter"/>
-    </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Text="Изменить заявление" Clicked="ChangeLetter"/>
+            <Button Grid.Column="1" Text="Удалить заявление" Clicked="DeleteLetter"/>
+        </Grid>
+    </StackLayout>
 </ContentPage>
