@@ -4,38 +4,71 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:project_otchislenie"
-    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutBehavior="Flyout" 
+    
     Title="project_otchislenie">
 
-    <TabBar> <!--тут для авторизации таббар появится ток кгда будет логин-->
-        <Tab Title="Login">
+
+    <Shell.FlyoutHeader>
+        <local:HeaderView/>
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <local:FooterView/>
+    </Shell.FlyoutFooter>
+
+
+    <TabBar >
+        <!--тут для авторизации таббар появится ток кгда будет логин-->
+        <Tab Title="Login"
+             Icon="fingerprint.png">
             <ShellContent 
-         ContentTemplate="{DataTemplate local:LoginPage}"
-         Route="LoginPage" />
+            ContentTemplate="{DataTemplate local:LoginPage}"
+            Route="LoginPage" />
         </Tab>
-       
+        <!--<Tab Title="Registration"
+             Icon="modeportrait.png">
+            <ShellContent 
+            ContentTemplate="{DataTemplate local:RegistrationPage}"
+            Route="RegistrationPage" />
+        </Tab>-->
+
     </TabBar>
 
-    <FlyoutItem Title="Home">
-        <Tab Title="Просмотр">
+    <FlyoutItem Title="Home"
+                Icon="home.png">
+        <Tab Title="Просмотр"
+             Icon="info.png">
             <ShellContent 
                 Title="Заявления"
+                Icon="document.png"
                 ContentTemplate="{DataTemplate local:MainPage}"
                 Route="MainPage" />
             <ShellContent
                 Title="Студенты"
+                Icon="usersalt.png"
                 ContentTemplate="{DataTemplate local:StudentPage}"
                 Route="StudentPage" />
         </Tab>
-        <Tab Title="Добавления">
+        <Tab Title="Добавления" Icon="plus.png">
             <ShellContent 
                 Title="Заявления"
+                Icon="adddocument.png"
                 ContentTemplate="{DataTemplate local:AddLetterPage}"
                 Route="AddLetterPage" />
             <ShellContent
                 Title="Студенты"
+                Icon="useradd.png"
                 ContentTemplate="{DataTemplate local:AddStudentPage}"
                 Route="AddStudentPage" />
         </Tab>
+    </FlyoutItem>
+
+    //
+    <FlyoutItem Title="Выход"
+                Icon="out.png">
+        <ShellContent 
+        ContentTemplate="{DataTemplate local:LoginPage}"
+         Route="LoginPage" />
     </FlyoutItem>
 </Shell>

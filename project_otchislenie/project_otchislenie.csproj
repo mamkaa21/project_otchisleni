@@ -57,6 +57,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\adddocument.png" />
+	  <None Remove="Resources\Images\document.png" />
+	  <None Remove="Resources\Images\fingerprint.png" />
+	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\info.png" />
+	  <None Remove="Resources\Images\modeportrait.png" />
+	  <None Remove="Resources\Images\out.png" />
+	  <None Remove="Resources\Images\plus.png" />
+	  <None Remove="Resources\Images\useradd.png" />
+	  <None Remove="Resources\Images\usersalt.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
@@ -79,6 +92,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="EditStudentPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="FooterView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="HeaderView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="LoginPage.xaml">

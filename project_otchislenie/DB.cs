@@ -18,9 +18,12 @@ namespace project_otchislenie
         private List<Student> Students { get; set; }
         private Student Student { get; set; }
         private ResignationLetter ResignationLetter { get; set; }
+        private User User { get; set; }
+        private List<User> Users { get; set; }
 
         private int LastStudentId = 1;
         private int LastResignationLetterId = 1;
+
 
         public DB()
         {
@@ -41,6 +44,13 @@ namespace project_otchislenie
                 Date = new DateTime(2024, 9, 30, 17, 40, 20),
                 StudentId = 1
             });
+            Users = new List<User>();
+            Users.Add(new User
+            {
+                Id = 1,
+                Login = "blondyiglamur",
+                Password = "ibrunetki"
+            });
         }
         public static DB GetInstance()
         {
@@ -48,6 +58,12 @@ namespace project_otchislenie
                 instance = new DB();
             return instance;
         }
+        public async Task<List<User>> GetUsers()
+        {
+            await Task.Delay(100);
+            return new List<User>(Users);
+        }
+
         public async Task<List<ResignationLetter>> GetListResignationLetter()
         {
             await Task.Delay(100);

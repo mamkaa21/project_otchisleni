@@ -4,6 +4,10 @@
              x:Class="project_otchislenie.LoginPage"
              Title="LoginPage">
     <VerticalStackLayout>
-       
+        <Label Text="Логин:"/>
+        <Entry Text="{Binding Login}"/>
+        <Label Text="Парол:"/>
+        <Entry Text="{Binding Password}"/>
+        <Button Text="Войти" Clicked="EntryButton"/>
     </VerticalStackLayout>
 </ContentPage>
