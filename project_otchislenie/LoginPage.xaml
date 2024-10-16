@@ -5,9 +5,10 @@
              Title="LoginPage">
     <VerticalStackLayout>
         <Label Text="Логин:"/>
-        <Entry Text="{Binding Login}"/>
+        <Entry Text="{Binding User.Login}"  ClearButtonVisibility="WhileEditing"/>
         <Label Text="Парол:"/>
-        <Entry Text="{Binding Password}"/>
+        <Entry Text="{Binding User.Password}" IsPassword="True" ClearButtonVisibility="WhileEditing"/>
         <Button Text="Войти" Clicked="EntryButton"/>
+        <Button Text="Нет аккаунта? Регистрация здесь." BorderColor="White" Background="White" TextColor="Black" Clicked="OpenRegistrationPage"/>
     </VerticalStackLayout>
 </ContentPage>

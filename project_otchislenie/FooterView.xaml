@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="project_otchislenie.FooterView">
     <VerticalStackLayout>
+        <Button Text="Выход" Clicked="Exit"/>
         <Label Text="Мы отчисляемся и вам советуем!!" FontSize="35" TextColor="Blue" VerticalOptions="Center"/>
     </VerticalStackLayout>
 </ContentView>

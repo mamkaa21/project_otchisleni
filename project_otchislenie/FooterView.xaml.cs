@@ -6,4 +6,10 @@ public partial class FooterView : ContentView
 	{
 		InitializeComponent();
 	}
+
+    private async void Exit(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//LoginPage");
+        Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+    }
 }

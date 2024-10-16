@@ -26,12 +26,6 @@
             ContentTemplate="{DataTemplate local:LoginPage}"
             Route="LoginPage" />
         </Tab>
-        <!--<Tab Title="Registration"
-             Icon="modeportrait.png">
-            <ShellContent 
-            ContentTemplate="{DataTemplate local:RegistrationPage}"
-            Route="RegistrationPage" />
-        </Tab>-->
 
     </TabBar>
 
@@ -64,11 +58,11 @@
         </Tab>
     </FlyoutItem>
 
-    //
-    <FlyoutItem Title="Выход"
+   
+    <!--<FlyoutItem Title="Выход"
                 Icon="out.png">
         <ShellContent 
         ContentTemplate="{DataTemplate local:LoginPage}"
          Route="LoginPage" />
-    </FlyoutItem>
+    </FlyoutItem>-->
 </Shell>

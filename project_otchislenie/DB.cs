@@ -23,6 +23,7 @@ namespace project_otchislenie
 
         private int LastStudentId = 1;
         private int LastResignationLetterId = 1;
+        private int LastUserId = 1;
 
 
         public DB()
@@ -126,10 +127,22 @@ namespace project_otchislenie
                 Id = ++LastResignationLetterId,
                 Reason = resignationLetter.Reason,
                 Date = resignationLetter.Date,
-                StudentId= resignationLetter.StudentId
+                StudentId = resignationLetter.StudentId
 
             };
             ResignationLetters.Add(newResignationLetter);
+        }
+
+        public async Task AddUser(User user)
+        {
+            await Task.Delay(100);
+            User newuser = new User()
+            {
+                Id = ++LastUserId,
+                Login = user.Login,
+                Password = user.Password
+            };
+            Users.Add(newuser);
         }
 
         public async Task AddStudent(Student student)

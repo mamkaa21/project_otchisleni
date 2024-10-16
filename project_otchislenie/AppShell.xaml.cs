@@ -7,6 +7,9 @@
             InitializeComponent();
             Routing.RegisterRoute("ResignationLetter", typeof(EditLetterPage));
             Routing.RegisterRoute("Student", typeof(EditStudentPage));
+            Routing.RegisterRoute("RegistrationPage", typeof(RegistrationPage));
         }
+
+        
     }
 }
