@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace project_otchislenie
+namespace project_otchislenie.Model
 {
     public class User
     {
-        public int Id {  get; set; }
+        public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
     }

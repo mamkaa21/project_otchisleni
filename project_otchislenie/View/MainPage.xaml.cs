@@ -1,9 +1,11 @@
 ﻿using Microsoft.Maui.Controls;
+using project_otchislenie.Model;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using project_otchislenie.ViewModel;
 
-namespace project_otchislenie
+namespace project_otchislenie.View
 {
     public partial class MainPage : ContentPage, INotifyPropertyChanged
     {

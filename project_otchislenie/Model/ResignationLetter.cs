@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace project_otchislenie
+namespace project_otchislenie.Model
 {
     public class ResignationLetter
     {
-        public int Id {  get; set; }
+        public int Id { get; set; }
         public string Reason { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
         public int StudentId { get; set; }
@@ -17,7 +17,7 @@ namespace project_otchislenie
 
         public override string ToString()
         {
-            
+
             return $"{Reason}, {Date}, {Student?.LastName}";
         }
 

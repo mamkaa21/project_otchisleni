@@ -6,12 +6,15 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using project_otchislenie.Model;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace project_otchislenie
 {
     public class DB
     {
+        private PpkDB context = new PpkDB("deathnote");
         private static DB instance;
 
         private List<ResignationLetter> ResignationLetters { get; set; }
@@ -62,29 +65,29 @@ namespace project_otchislenie
         public async Task<List<User>> GetUsers()
         {
             await Task.Delay(100);
-            return new List<User>(Users);
+            return new List<User>(context.Users);
         }
 
         public async Task<List<ResignationLetter>> GetListResignationLetter()
         {
             await Task.Delay(100);
-            foreach (var item in ResignationLetters)
+            foreach (var item in context.ResignationLetters)
             {
                 item.SetStudent();
             }
-            return new List<ResignationLetter>(ResignationLetters);
+            return new List<ResignationLetter>(context.ResignationLetters);
         }
 
         public async Task<List<Student>> GetListStudent()
         {
             await Task.Delay(100);
-            return new List<Student>(Students);
+            return new List<Student>(context.Students);
         }
 
         public async Task<ResignationLetter> GetResignationLetterById(int id)
         {
             await Task.Delay(100);
-            var letter = ResignationLetters.FirstOrDefault(s => s.Id == id);
+            var letter = context.ResignationLetters.FirstOrDefault(s => s.Id == id);
             if (letter == null)
             {
                 return null;
@@ -102,7 +105,7 @@ namespace project_otchislenie
         public async Task<Student> GetStudentById(int id)
         {
 
-            var student = Students.FirstOrDefault(s => s.Id == id);
+            var student = context.Students.FirstOrDefault(s => s.Id == id);
             await Task.Delay(100);
             if (student == null)
             {
@@ -130,7 +133,7 @@ namespace project_otchislenie
                 StudentId = resignationLetter.StudentId
 
             };
-            ResignationLetters.Add(newResignationLetter);
+            context.ResignationLetters.Add(newResignationLetter);
         }
 
         public async Task AddUser(User user)
@@ -142,7 +145,7 @@ namespace project_otchislenie
                 Login = user.Login,
                 Password = user.Password
             };
-            Users.Add(newuser);
+            context.Users.Add(newuser);
         }
 
         public async Task AddStudent(Student student)
@@ -156,13 +159,13 @@ namespace project_otchislenie
                 Age = student.Age,
                 Debts = student.Debts
             };
-            Students.Add(getStudent);
+            context.Students.Add(getStudent);
         }
 
         public async Task EditResignationLetter(ResignationLetter resignationLetter)
         {
             await Task.Delay(100);
-            var letter = ResignationLetters.FirstOrDefault(s => s.Id == resignationLetter.Id);
+            var letter = context.ResignationLetters.FirstOrDefault(s => s.Id == resignationLetter.Id);
             letter.Id = resignationLetter.Id;
             letter.Reason = resignationLetter.Reason;
             letter.Date = resignationLetter.Date;
@@ -172,7 +175,7 @@ namespace project_otchislenie
         public async Task EditStudent(Student student)
         {
             await Task.Delay(100);
-            var stu = Students.FirstOrDefault(s => s.Id == student.Id);
+            var stu = context.Students.FirstOrDefault(s => s.Id == student.Id);
             stu.Id = student.Id;
             stu.FirstName = student.FirstName;
             stu.LastName = student.LastName;
@@ -182,20 +185,20 @@ namespace project_otchislenie
         public async Task DeleteResignationLetterById(ResignationLetter resignationLetter)
         {
             await Task.Delay(100);
-            var letter = ResignationLetters.FirstOrDefault(s => s.Id == resignationLetter.Id);
+            var letter = context.ResignationLetters.FirstOrDefault(s => s.Id == resignationLetter.Id);
             if (resignationLetter.Id == letter.Id)
             {
-                ResignationLetters.Remove(resignationLetter);
+                context.ResignationLetters.Remove(resignationLetter);
             }
         }
 
         public async Task DeleteStudent(Student student)
         {
             await Task.Delay(100);
-            var stu = Students.FirstOrDefault(s => s.Id == student.Id);
+            var stu = context.Students.FirstOrDefault(s => s.Id == student.Id);
             if (student.Id == stu.Id)
             {
-                Students.Remove(student);
+                context.Students.Remove(student);
             }
         }
 
