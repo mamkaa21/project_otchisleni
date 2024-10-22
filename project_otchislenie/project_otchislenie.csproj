@@ -77,22 +77,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="View\StudentPage.xaml.cs">
+	  <Compile Update="Views\StudentPage.xaml.cs">
 	    <DependentUpon>StudentPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="View\AddLetterPage.xaml">
+	  <MauiXaml Update="Views\AddLetterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\AddStudentPage.xaml">
+	  <MauiXaml Update="Views\AddStudentPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\EditLetterPage.xaml">
+	  <MauiXaml Update="Views\EditLetterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\EditStudentPage.xaml">
+	  <MauiXaml Update="Views\EditStudentPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="FooterView.xaml">
@@ -101,13 +101,13 @@
 	  <MauiXaml Update="HeaderView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\LoginPage.xaml">
+	  <MauiXaml Update="Views\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\RegistrationPage.xaml">
+	  <MauiXaml Update="Views\RegistrationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\StudentPage.xaml">
+	  <MauiXaml Update="Views\StudentPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

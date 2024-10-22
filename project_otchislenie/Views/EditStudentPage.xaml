@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="project_otchislenie.EditStudentPage"
+             xmlns:local="clr-namespace:project_otchislenie"
+             xmlns:m="clr-namespace:project_otchislenie.Models"
+             xmlns:vm="clr-namespace:project_otchislenie.ViewModels"
+             xmlns:v="clr-namespace:project_otchislenie.Views"
+             x:Class="project_otchislenie.Views.EditStudentPage"
              Title="EditStudentPage">
+    <ContentPage.BindingContext>
+        <vm:EditStudentPageVM/>
+    </ContentPage.BindingContext>
     <VerticalStackLayout>
         <VerticalStackLayout>
             <Label Text="Имя"/>
@@ -15,7 +22,7 @@
             <Label Text="Возраст"/>
             <Slider x:Name="slider" Minimum="15" Maximum="99" Value="{Binding Student.Age}" ValueChanged="AgeChanged" />
             <Label Text="{Binding Student.Age}"/>
-            <Button Text="Сохранить" Clicked="SaveStudent"/>
+            <Button Text="Сохранить" Command="{Binding SaveStudent}"/>
         </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

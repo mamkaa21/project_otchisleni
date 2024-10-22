@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="project_otchislenie.StudentPage"
+             xmlns:local="clr-namespace:project_otchislenie"
+             xmlns:m="clr-namespace:project_otchislenie.Models"
+             xmlns:vm="clr-namespace:project_otchislenie.ViewModels"
+             xmlns:v="clr-namespace:project_otchislenie.Views"
+             x:Class="project_otchislenie.Views.StudentPage"
              Title="StudentPage">
+    <ContentPage.BindingContext>
+        <vm:StudentPageVM/>
+    </ContentPage.BindingContext>
     <StackLayout>
         <Label  Text="Студенты" HorizontalTextAlignment="Center"/>
         <ListView HeightRequest="80"  ItemsSource="{Binding Students}" SelectedItem="{Binding Student}" VerticalScrollBarVisibility="Always" HorizontalScrollBarVisibility="Always" >
@@ -12,8 +19,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Text="Изменить"  Clicked="EditStudent"/>
-            <Button Grid.Column="1" Text="Удалить"  Clicked="DeleteStudent"/>
+            <Button Text="Изменить"  Command="{Binding EditStudent}"/>
+            <Button Grid.Column="1" Text="Удалить"  Command="{Binding DeleteStudent}"/>
         </Grid>
     </StackLayout>
     

@@ -4,6 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:project_otchislenie"
+     xmlns:m="clr-namespace:project_otchislenie.Models"
+ xmlns:vm="clr-namespace:project_otchislenie.ViewModels"
+ xmlns:v="clr-namespace:project_otchislenie.Views"
     Shell.FlyoutBehavior="Flyout" 
     
     Title="project_otchislenie">
@@ -23,7 +26,7 @@
         <Tab Title="Login"
              Icon="fingerprint.png">
             <ShellContent 
-            ContentTemplate="{DataTemplate local:LoginPage}"
+            ContentTemplate="{DataTemplate v:LoginPage}"
             Route="LoginPage" />
         </Tab>
 
@@ -36,33 +39,28 @@
             <ShellContent 
                 Title="Заявления"
                 Icon="document.png"
-                ContentTemplate="{DataTemplate local:MainPage}"
+                ContentTemplate="{DataTemplate v:MainPage}"
                 Route="MainPage" />
             <ShellContent
                 Title="Студенты"
                 Icon="usersalt.png"
-                ContentTemplate="{DataTemplate local:StudentPage}"
+                ContentTemplate="{DataTemplate v:StudentPage}"
                 Route="StudentPage" />
         </Tab>
         <Tab Title="Добавления" Icon="plus.png">
             <ShellContent 
                 Title="Заявления"
                 Icon="adddocument.png"
-                ContentTemplate="{DataTemplate local:AddLetterPage}"
+                ContentTemplate="{DataTemplate v:AddLetterPage}"
                 Route="AddLetterPage" />
             <ShellContent
                 Title="Студенты"
                 Icon="useradd.png"
-                ContentTemplate="{DataTemplate local:AddStudentPage}"
+                ContentTemplate="{DataTemplate v:AddStudentPage}"
                 Route="AddStudentPage" />
         </Tab>
     </FlyoutItem>
 
    
-    <!--<FlyoutItem Title="Выход"
-                Icon="out.png">
-        <ShellContent 
-        ContentTemplate="{DataTemplate local:LoginPage}"
-         Route="LoginPage" />
-    </FlyoutItem>-->
+    
 </Shell>

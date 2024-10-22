@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using project_otchislenie.Model;
+using project_otchislenie.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace project_otchislenie
