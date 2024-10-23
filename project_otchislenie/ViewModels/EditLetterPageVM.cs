@@ -20,6 +20,7 @@ namespace project_otchislenie.ViewModels
             set
             {
                 resignationLetter = value;
+                GetStudents();
                 Signal();
             }
         }
@@ -33,7 +34,6 @@ namespace project_otchislenie.ViewModels
         public EditLetterPageVM()
         {
             Reasons = new List<string> { "По собственному желанию", "Академическая задолженность" };
-            GetStudents();
             SaveLetter = new CommandVM(async () =>
             {
                 if (Student != null)
@@ -43,7 +43,7 @@ namespace project_otchislenie.ViewModels
                 if (ResignationLetter.Id != 0)
                 {
                     await DB.GetInstance().EditResignationLetter(ResignationLetter);
-                    Signal();
+                    Signal(nameof(ResignationLetter));
 
                 }
                 await Shell.Current.GoToAsync("//MainPage");
@@ -56,7 +56,7 @@ namespace project_otchislenie.ViewModels
             {
                 Student = Students.FirstOrDefault(s => s.Id == ResignationLetter.StudentId);
             }
-            Signal();
+            Signal(nameof(Students));
         }
     }
 }

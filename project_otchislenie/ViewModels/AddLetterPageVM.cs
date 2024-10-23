@@ -11,7 +11,7 @@ namespace project_otchislenie.ViewModels
 {
     public class AddLetterPageVM : BaseVM
     {
-        public ResignationLetter ResignationLetter { get; set; }
+        public ResignationLetter ResignationLetter { get; set; } = new ResignationLetter();
         public List<string> Reasons { get; set; }
         public Student Student { get; set; }
         public List<Student> Students { get; set; }
@@ -28,16 +28,9 @@ namespace project_otchislenie.ViewModels
                 {
                     ResignationLetter.StudentId = Student.Id;
                 }
-
-                if (ResignationLetter == null)
-                {
-                    ResignationLetter = new ResignationLetter();
-                }
-                else
-                {
                     await DB.GetInstance().AddResignationLetter(ResignationLetter);
-                    Signal();
-                }
+                    Signal(nameof(ResignationLetter));
+                await Shell.Current.GoToAsync("//MainPage");
             });
 
         }
@@ -49,7 +42,7 @@ namespace project_otchislenie.ViewModels
             {
                 Student = Students.FirstOrDefault(s => s.Id == ResignationLetter.StudentId);
             }
-            Signal();
+            Signal(nameof(Students));
         }
     }
 }

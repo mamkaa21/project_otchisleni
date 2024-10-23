@@ -11,6 +11,7 @@ namespace project_otchislenie.Views
         public StudentPage()
         {
             InitializeComponent();
+            BindingContext = new StudentPageVM();
         }
 
         protected override void OnAppearing()

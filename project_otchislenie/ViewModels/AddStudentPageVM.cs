@@ -11,24 +11,26 @@ namespace project_otchislenie.ViewModels
 {
     public class AddStudentPageVM : BaseVM
     {
-        public Student Student { get; set; }
+        public Student Student { get; set; } =  new Student();
         public CommandVM SaveStudent { get; }
 
         public AddStudentPageVM()
         {
             SaveStudent = new CommandVM(async () =>
             {
-                if (Student == null)
-                {
-                    Student = new Student();
-                }
-                else
-                {
                     await DB.GetInstance().AddStudent(Student);
-                    Signal();
-                    await Shell.Current.GoToAsync("StudentPage");
-                }
+                    Signal(nameof(Student));
+                    await Shell.Current.GoToAsync("//StudentPage");
+              
             });
+        }
+        internal void StepperChanged()
+        {
+            Signal(nameof(Student));
+        }
+        internal void SliderChanged()
+        {
+            Signal(nameof(Student));
         }
     }
 }

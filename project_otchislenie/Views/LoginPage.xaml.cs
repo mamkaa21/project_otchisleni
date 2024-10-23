@@ -10,6 +10,7 @@ namespace project_otchislenie.Views
         public LoginPage()
         {
             InitializeComponent();
+            BindingContext =  new LoginPageVM();
         }
 
         protected override void OnAppearing()

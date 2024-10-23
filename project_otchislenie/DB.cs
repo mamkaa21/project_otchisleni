@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using project_otchislenie.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace project_otchislenie
 {
@@ -31,30 +30,32 @@ namespace project_otchislenie
 
         public DB()
         {
-            Students = new List<Student>();
-            Students.Add(new Student
+            
+            context.Database.EnsureCreated();
+            context.Students.Add(new Student
             {
-                Id = 1,
                 FirstName = "Мария",
                 LastName = "Розина",
                 Age = 18,
                 Debts = 0
             });
-            ResignationLetters = new List<ResignationLetter>();
-            ResignationLetters.Add(new ResignationLetter
+            
+
+            context.ResignationLetters.Add(new ResignationLetter
             {
-                Id = 1,
                 Reason = "По собственному желанию",
                 Date = new DateTime(2024, 9, 30, 17, 40, 20),
                 StudentId = 1
             });
-            Users = new List<User>();
-            Users.Add(new User
+            
+
+            context.Users.Add(new User
             {
-                Id = 1,
-                Login = "blondyiglamur",
-                Password = "ibrunetki"
+                Login = "d",
+                Password = "d"
             });
+            
+
         }
         public static DB GetInstance()
         {
@@ -65,7 +66,7 @@ namespace project_otchislenie
         public async Task<List<User>> GetUsers()
         {
             await Task.Delay(100);
-            return new List<User>(context.Users);
+            return new List<User>(context.Users.ToList());
         }
 
         public async Task<List<ResignationLetter>> GetListResignationLetter()
@@ -75,13 +76,13 @@ namespace project_otchislenie
             {
                 item.SetStudent();
             }
-            return new List<ResignationLetter>(context.ResignationLetters);
+            return new List<ResignationLetter>(context.ResignationLetters.ToList());
         }
 
         public async Task<List<Student>> GetListStudent()
         {
             await Task.Delay(100);
-            return new List<Student>(context.Students);
+            return new List<Student>(context.Students.ToList());
         }
 
         public async Task<ResignationLetter> GetResignationLetterById(int id)
@@ -127,13 +128,13 @@ namespace project_otchislenie
             await Task.Delay(100);
             ResignationLetter newResignationLetter = new ResignationLetter()
             {
-                Id = ++LastResignationLetterId,
                 Reason = resignationLetter.Reason,
                 Date = resignationLetter.Date,
                 StudentId = resignationLetter.StudentId
 
             };
-            context.ResignationLetters.Add(newResignationLetter);
+            await context.ResignationLetters.AddAsync(newResignationLetter);
+            await context.SaveChangesAsync();
         }
 
         public async Task AddUser(User user)
@@ -141,11 +142,11 @@ namespace project_otchislenie
             await Task.Delay(100);
             User newuser = new User()
             {
-                Id = ++LastUserId,
                 Login = user.Login,
                 Password = user.Password
             };
-            context.Users.Add(newuser);
+            await context.Users.AddAsync(newuser);
+            await context.SaveChangesAsync();
         }
 
         public async Task AddStudent(Student student)
@@ -153,13 +154,13 @@ namespace project_otchislenie
             await Task.Delay(100);
             Student getStudent = new Student()
             {
-                Id = ++LastStudentId,
                 FirstName = student.FirstName,
                 LastName = student.LastName,
                 Age = student.Age,
                 Debts = student.Debts
             };
-            context.Students.Add(getStudent);
+            await context.Students.AddAsync(getStudent);
+            await context.SaveChangesAsync();
         }
 
         public async Task EditResignationLetter(ResignationLetter resignationLetter)
@@ -170,6 +171,7 @@ namespace project_otchislenie
             letter.Reason = resignationLetter.Reason;
             letter.Date = resignationLetter.Date;
             letter.StudentId = resignationLetter.StudentId;
+            await context.SaveChangesAsync();
         }
 
         public async Task EditStudent(Student student)
@@ -180,6 +182,7 @@ namespace project_otchislenie
             stu.FirstName = student.FirstName;
             stu.LastName = student.LastName;
             stu.Age = student.Age;
+            await context.SaveChangesAsync();
         }
 
         public async Task DeleteResignationLetterById(ResignationLetter resignationLetter)
@@ -189,6 +192,7 @@ namespace project_otchislenie
             if (resignationLetter.Id == letter.Id)
             {
                 context.ResignationLetters.Remove(resignationLetter);
+                await context.SaveChangesAsync();
             }
         }
 
@@ -199,6 +203,7 @@ namespace project_otchislenie
             if (student.Id == stu.Id)
             {
                 context.Students.Remove(student);
+                await context.SaveChangesAsync();
             }
         }
 

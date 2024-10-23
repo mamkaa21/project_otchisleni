@@ -23,8 +23,14 @@ namespace project_otchislenie
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Filename={filename}");
+            var splitePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Database");
+            Directory.CreateDirectory(splitePath);
+            var fileName = $"{splitePath}\f{filename}";
+            if (!File.Exists(fileName))
+                File.Create(fileName);
+            optionsBuilder.UseSqlite($"Data Source={fileName}");
             base.OnConfiguring(optionsBuilder);
+            
         }
 
 

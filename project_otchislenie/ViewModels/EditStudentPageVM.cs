@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using project_otchislenie.Views;
 namespace project_otchislenie.ViewModels
 {
     [QueryProperty(nameof(Student), "Student")]
-    public class EditStudentPageVM : BaseVM
+    public class EditStudentPageVM : BaseVM, INotifyPropertyChanged
     {
         private Student student;
         public Student Student
@@ -31,26 +32,30 @@ namespace project_otchislenie.ViewModels
                 if (Student.Id != 0)
                 {
                     await DB.GetInstance().EditStudent(Student);
-                    Signal();
+                    Signal(nameof(Student));
                 }
-                await Shell.Current.GoToAsync("StudentPage");
+                await Shell.Current.GoToAsync("//StudentPage");
             });
 
         }
 
-        private void AgeChanged(object sender, ValueChangedEventArgs e)
-        {
-            Signal();
-        }
+        //private void AgeChanged(object sender, ValueChangedEventArgs e)
+        //{
+        //    Signal();
+        //}
 
-        private void DebtsChanged(object sender, ValueChangedEventArgs e)
-        {
-            Signal(nameof(Student));
-        }
+        //private void DebtsChanged(object sender, ValueChangedEventArgs e)
+        //{
+        //    Signal(nameof(Student));
+        //}
 
         internal void StepperChanged()
         {
-            
+            Signal(nameof(Student));
+        }
+        internal void SliderChanged()
+        {
+            Signal(nameof(Student));
         }
     }
 }

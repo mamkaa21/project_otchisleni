@@ -32,7 +32,7 @@ namespace project_otchislenie.ViewModels
                 {
                     Login = "";
                     Password = "";
-                    Signal();
+                    Signal(nameof(Users));
                     await Shell.Current.GoToAsync("//MainPage");
                     Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
                 }

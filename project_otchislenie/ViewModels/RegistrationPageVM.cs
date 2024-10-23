@@ -10,24 +10,16 @@ namespace project_otchislenie.ViewModels
 {
     public class RegistrationPageVM : BaseVM
     {
-        public User User { get; set; }
+        public User User { get; set; } = new User();
         public CommandVM AddUser { get; }
 
         public RegistrationPageVM()
         {
             AddUser = new CommandVM( async () =>
             {
-                if (User == null)
-                {
-                    User = new User();
-                }
-                else
-                {
                     await DB.GetInstance().AddUser(User);
-                    Signal();
-                    Shell.Current.GoToAsync("//LoginPage");
-                    Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
-                }
+                    Signal(nameof(User));
+                    await Shell.Current.GoToAsync("//LoginPage");
             });
         }
         internal void OnAppearing()

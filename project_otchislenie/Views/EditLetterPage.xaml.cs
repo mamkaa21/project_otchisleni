@@ -8,6 +8,7 @@ namespace project_otchislenie.Views
         public EditLetterPage()
         {
             InitializeComponent();
+            BindingContext = new EditLetterPageVM();
         }
     }
 

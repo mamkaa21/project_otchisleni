@@ -48,7 +48,7 @@ namespace project_otchislenie.ViewModels
         private async void GetData()
         {
             Students = await DB.GetInstance().GetListStudent();
-            Signal();
+            Signal(nameof(Students));
         }
     }
 }

@@ -16,6 +16,7 @@ namespace project_otchislenie.Views
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = new MainPageVM();
         }
 
         protected override void OnAppearing()

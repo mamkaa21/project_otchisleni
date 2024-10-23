@@ -9,6 +9,7 @@ namespace project_otchislenie.Views
         public AddLetterPage()
         {
             InitializeComponent();
+            BindingContext = new AddLetterPageVM();
         }      
     }
 }

@@ -10,11 +10,17 @@ namespace project_otchislenie.Views
         public EditStudentPage()
         {
             InitializeComponent();
+            BindingContext = new EditStudentPageVM();
         }
 
         private void DebtsChanged(object sender, ValueChangedEventArgs e)
         {
             ((EditStudentPageVM)BindingContext).StepperChanged();
+        }
+
+        private void AgeChanged(object sender, ValueChangedEventArgs e)
+        {
+            ((EditStudentPageVM)BindingContext).SliderChanged();
         }
     }
 }

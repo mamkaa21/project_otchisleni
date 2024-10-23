@@ -14,6 +14,7 @@ namespace project_otchislenie.Views
         public RegistrationPage()
         {
             InitializeComponent();
+            BindingContext = new RegistrationPageVM();
         }
 
         protected override void OnAppearing()
