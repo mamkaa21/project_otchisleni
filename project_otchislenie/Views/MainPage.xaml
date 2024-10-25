@@ -11,9 +11,7 @@
     </ContentPage.BindingContext>
     <StackLayout>
         <Label  Text="Заявление на отчисление" HorizontalTextAlignment="Center" FontSize="25"/>
-        <ListView ItemsSource="{Binding ResignationLetters}" SelectedItem="{Binding ResignationLetter}" VerticalScrollBarVisibility="Always" HorizontalScrollBarVisibility="Always">
-            
-        </ListView>
+        <ListView ItemsSource="{Binding ResignationLetters}" SelectedItem="{Binding ResignationLetter}" VerticalScrollBarVisibility="Always" HorizontalScrollBarVisibility="Always" />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

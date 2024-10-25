@@ -21,12 +21,23 @@ namespace project_otchislenie.ViewModels
             {
                 resignationLetter = value;
                 GetStudents();
-                Signal();
+                Signal(nameof(ResignationLetter));
             }
         }
 
         public List<string> Reasons { get; set; }
-        public Student Student { get; set; }
+
+        private Student student;
+        public Student Student
+        {
+            get => student;
+            set
+            {
+                student = value;
+                Signal(nameof(Student));
+            }
+        }
+
         public List<Student> Students { get; set; }
 
         public CommandVM SaveLetter { get; }
