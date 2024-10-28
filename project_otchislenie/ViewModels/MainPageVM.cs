@@ -21,6 +21,7 @@ namespace project_otchislenie.ViewModels
 
         public MainPageVM()
         {
+
             OpenListStudent = new CommandVM(async () =>
             {
                 await Shell.Current.GoToAsync("StudentPage");
@@ -47,7 +48,7 @@ namespace project_otchislenie.ViewModels
         private async void GetData()
         {
             ResignationLetters = await DB.GetInstance().GetListResignationLetter();
-            Signal(nameof(ResignationLetters));
+            Signal(nameof(ResignationLetters)); 
         }
     }
 }

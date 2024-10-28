@@ -39,16 +39,7 @@ namespace project_otchislenie.ViewModels
 
         }
 
-        //private void AgeChanged(object sender, ValueChangedEventArgs e)
-        //{
-        //    Signal();
-        //}
-
-        //private void DebtsChanged(object sender, ValueChangedEventArgs e)
-        //{
-        //    Signal(nameof(Student));
-        //}
-
+     
         internal void StepperChanged()
         {
             Signal(nameof(Student));

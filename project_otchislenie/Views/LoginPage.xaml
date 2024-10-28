@@ -12,9 +12,9 @@
     </ContentPage.BindingContext>
     <VerticalStackLayout>
         <Label Text="Логин:"/>
-        <Entry Text="{Binding User.Login}"  ClearButtonVisibility="WhileEditing"/>
+        <Entry Text="{Binding User.Login}" Placeholder="введите логин" ClearButtonVisibility="WhileEditing"/>
         <Label Text="Парол:"/>
-        <Entry Text="{Binding User.Password}" IsPassword="True" ClearButtonVisibility="WhileEditing"/>
+        <Entry Text="{Binding User.Password}" Placeholder="введите пароль" IsPassword="True" ClearButtonVisibility="WhileEditing"/>
         <Button Text="Войти"    Command="{Binding EntryButton}"/>
         <Button Text="Нет аккаунта? Регистрация здесь." BorderColor="White" Background="White" TextColor="Black" Command="{Binding OpenRegistrationPage}"/>
     </VerticalStackLayout>

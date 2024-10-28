@@ -44,5 +44,12 @@ namespace project_otchislenie.ViewModels
             }
             Signal(nameof(Students));
         }
+        internal void OnAppearing()
+        {
+            GetStudents();
+            ResignationLetter = new ResignationLetter();
+            Signal(nameof(ResignationLetter));
+
+        }
     }
 }

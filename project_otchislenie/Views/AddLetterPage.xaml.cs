@@ -10,7 +10,11 @@ namespace project_otchislenie.Views
         {
             InitializeComponent();
             BindingContext = new AddLetterPageVM();
-        }      
+        }
+        protected override void OnAppearing()
+        {
+            ((AddLetterPageVM)BindingContext).OnAppearing();
+        }
     }
 }
 

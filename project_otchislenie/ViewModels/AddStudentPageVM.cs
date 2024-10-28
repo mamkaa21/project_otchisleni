@@ -32,5 +32,10 @@ namespace project_otchislenie.ViewModels
         {
             Signal(nameof(Student));
         }
+        internal void OnAppearing()
+        {
+            Student = new Student();
+            Signal(nameof(Student));
+        }
     }
 }

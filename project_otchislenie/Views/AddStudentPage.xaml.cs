@@ -23,6 +23,11 @@ namespace project_otchislenie.Views
         {
             ((AddStudentPageVM)BindingContext).SliderChanged();
         }
+
+        protected override void OnAppearing()
+        {
+            ((AddStudentPageVM)BindingContext).OnAppearing();
+        }
     }
 }
 

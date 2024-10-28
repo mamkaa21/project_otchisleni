@@ -32,28 +32,28 @@ namespace project_otchislenie
         {
             
             context.Database.EnsureCreated();
-            context.Students.Add(new Student
-            {
-                FirstName = "Мария",
-                LastName = "Розина",
-                Age = 18,
-                Debts = 0
-            });
+            //context.Students.Add(new Student
+            //{
+            //    FirstName = "Мария",
+            //    LastName = "Розина",
+            //    Age = 18,
+            //    Debts = 0
+            //});
             
 
-            context.ResignationLetters.Add(new ResignationLetter
-            {
-                Reason = "По собственному желанию",
-                Date = new DateTime(2024, 9, 30, 17, 40, 20),
-                StudentId = 1
-            });
+            //context.ResignationLetters.Add(new ResignationLetter
+            //{
+            //    Reason = "По собственному желанию",
+            //    Date = new DateTime(2024, 9, 30, 17, 40, 20),
+            //    StudentId = 1
+            //});
             
 
-            context.Users.Add(new User
-            {
-                Login = "d",
-                Password = "d"
-            });
+            //context.Users.Add(new User
+            //{
+            //    Login = "d",
+            //    Password = "d"
+            //});
             
 
         }

@@ -42,9 +42,13 @@ namespace project_otchislenie.ViewModels
                 }
             });
         }
-        internal void OnAppearing()
+        internal async void OnAppearing()
         {
             Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+            Signal(nameof(Login));
+            Signal(nameof(Password));
+            
+                
         }
     }
 }

@@ -11,7 +11,19 @@
     </ContentPage.BindingContext>
     <StackLayout>
         <Label  Text="Заявление на отчисление" HorizontalTextAlignment="Center" FontSize="25"/>
-        <ListView ItemsSource="{Binding ResignationLetters}" SelectedItem="{Binding ResignationLetter}" VerticalScrollBarVisibility="Always" HorizontalScrollBarVisibility="Always" />
+        <ListView ItemsSource="{Binding ResignationLetters}" SelectedItem="{Binding ResignationLetter}" VerticalScrollBarVisibility="Always" HorizontalScrollBarVisibility="Always" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Spacing="5" Padding="12">
+                            <Label Text="{Binding Reason}" TextColor="MidnightBlue" />
+                            <Label Text="{Binding Date, StringFormat='{}{0:dd.MM.yyyy}'}" TextColor="MidnightBlue"/>
+                            <Label Text="{Binding Student.LastName}" TextColor="MidnightBlue"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
