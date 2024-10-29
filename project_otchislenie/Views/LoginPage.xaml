@@ -6,16 +6,16 @@
              xmlns:vm="clr-namespace:project_otchislenie.ViewModels"
              xmlns:v="clr-namespace:project_otchislenie.Views"
              x:Class="project_otchislenie.Views.LoginPage"
-             Title="LoginPage">
+             Title="Войти">
     <ContentPage.BindingContext>
         <vm:LoginPageVM/>
     </ContentPage.BindingContext>
     <VerticalStackLayout>
-        <Label Text="Логин:"/>
-        <Entry Text="{Binding User.Login}" Placeholder="введите логин" ClearButtonVisibility="WhileEditing"/>
-        <Label Text="Парол:"/>
-        <Entry Text="{Binding User.Password}" Placeholder="введите пароль" IsPassword="True" ClearButtonVisibility="WhileEditing"/>
-        <Button Text="Войти"    Command="{Binding EntryButton}"/>
+        <Label Text="Логин:" Style="{StaticResource labelStyle}"/>
+        <Entry Text="{Binding User.Login}" Placeholder="введите логин" ClearButtonVisibility="WhileEditing" Style="{StaticResource entryStyle}"/>
+        <Label Text="Парол:" Style="{StaticResource labelStyle}"/>
+        <Entry Text="{Binding User.Password}" Placeholder="введите пароль" IsPassword="True" ClearButtonVisibility="WhileEditing" Style="{StaticResource entryStyle}"/>
+        <Button Text="Войти"    Command="{Binding EntryButton}" Style="{StaticResource buttonStyle}"/>
         <Button Text="Нет аккаунта? Регистрация здесь." BorderColor="White" Background="White" TextColor="Black" Command="{Binding OpenRegistrationPage}"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -6,7 +6,7 @@
              xmlns:vm="clr-namespace:project_otchislenie.ViewModels"
              xmlns:v="clr-namespace:project_otchislenie.Views"
              x:Class="project_otchislenie.Views.AddLetterPage"
-             Title="AddLetterPage">
+             Title="Добавить заявление">
     <ContentPage.BindingContext>
         <vm:AddLetterPageVM/>
     </ContentPage.BindingContext>
@@ -17,6 +17,6 @@
         <DatePicker Date="{Binding ResignationLetter.Date}" />
         <Label Text="Студент"/>
         <Picker ItemsSource="{Binding Students}" SelectedItem="{Binding Student}"/>
-        <Button Text="Сохранить" Command="{Binding AddLetter}"/>
+        <Button Text="Сохранить" Command="{Binding AddLetter}"  Style="{StaticResource buttonStyle}"/>
     </VerticalStackLayout>
 </ContentPage>

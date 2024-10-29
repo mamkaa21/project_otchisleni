@@ -6,15 +6,16 @@
              xmlns:vm="clr-namespace:project_otchislenie.ViewModels"
              xmlns:v="clr-namespace:project_otchislenie.Views"
              x:Class="project_otchislenie.Views.RegistrationPage"
-             Title="RegistrationPage">
+             Title="Регистрация"
+             >
     <ContentPage.BindingContext>
         <vm:RegistrationPageVM/>
     </ContentPage.BindingContext>
-    <VerticalStackLayout>
-        <Label Text="Логин:"/>
-        <Entry Text="{Binding User.Login}" ClearButtonVisibility="WhileEditing"/>
-        <Label Text="Парол:"/>
-        <Entry Text="{Binding User.Password}" ClearButtonVisibility="WhileEditing"/>
-        <Button Text="Войти" Command="{Binding AddUser}"/>
+    <VerticalStackLayout >
+        <Label Text="Логин:" Style="{StaticResource labelStyle}"/>
+        <Entry Text="{Binding User.Login}" Style="{StaticResource entryStyle}" Placeholder="введите логин" ClearButtonVisibility="WhileEditing"/>
+        <Label Text="Парол:" Style="{StaticResource labelStyle}"/>
+        <Entry Text="{Binding User.Password}" Style="{StaticResource entryStyle}" Placeholder="введите пароль" ClearButtonVisibility="WhileEditing"/>
+        <Button Text="Войти" Command="{Binding AddUser}" Style="{StaticResource buttonStyle}"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -4,6 +4,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <Style x:Key="labelStyle" TargetType="Label">
+        <Setter Property="Background" Value="LavenderBlush"/>
+    </Style>
+    <Style x:Key="buttonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Lavender"/>
+        <Setter Property="TextColor" Value="Black"/>
+    </Style>
+    
+    <Style x:Key="entryStyle" TargetType="Entry">
+        <Setter Property="Background" Value="LavenderBlush"/>
+    </Style>
+    
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
     </Style>
@@ -13,6 +25,8 @@
         <Setter Property="SelectedIndicatorColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray100}}"/>
     </Style>
 
+    
+    
     <Style TargetType="Border">
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" />
         <Setter Property="StrokeShape" Value="Rectangle"/>

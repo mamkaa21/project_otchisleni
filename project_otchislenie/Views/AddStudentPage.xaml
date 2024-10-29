@@ -6,7 +6,7 @@
              xmlns:vm="clr-namespace:project_otchislenie.ViewModels"
              xmlns:v="clr-namespace:project_otchislenie.Views"
              x:Class="project_otchislenie.Views.AddStudentPage"
-             Title="AddStudentPage">
+             Title="Добавить студента">
     <ContentPage.BindingContext>
         <vm:AddStudentPageVM/>
     </ContentPage.BindingContext>
@@ -21,6 +21,6 @@
         <Label Text="Возраст"/>
         <Slider x:Name="slider" Minimum="15" Maximum="99" Value="{Binding Student.Age}" ValueChanged="AgeChanged" />
         <Label Text="{Binding Student.Age}"/>
-        <Button Text="Сохранить" Command="{Binding SaveStudent}"/>
+        <Button Text="Сохранить" Command="{Binding SaveStudent}"  Style="{StaticResource buttonStyle}"/>
     </VerticalStackLayout>
 </ContentPage>

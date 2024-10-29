@@ -32,7 +32,7 @@
 
     </TabBar>
 
-    <FlyoutItem Title="Home"
+    <FlyoutItem Title="Домой"
                 Icon="home.png">
         <Tab Title="Просмотр"
              Icon="info.png">

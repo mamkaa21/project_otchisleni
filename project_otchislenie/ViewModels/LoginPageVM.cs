@@ -46,9 +46,7 @@ namespace project_otchislenie.ViewModels
         {
             Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
             Signal(nameof(Login));
-            Signal(nameof(Password));
-            
-                
+            Signal(nameof(Password));   
         }
     }
 }

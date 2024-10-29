@@ -5,13 +5,14 @@
              xmlns:m="clr-namespace:project_otchislenie.Models"
              xmlns:vm="clr-namespace:project_otchislenie.ViewModels"
              xmlns:v="clr-namespace:project_otchislenie.Views"
-             x:Class="project_otchislenie.Views.MainPage">
+             x:Class="project_otchislenie.Views.MainPage"
+             Title="Заявления на отчисление">
     <ContentPage.BindingContext>
         <vm:MainPageVM/>
     </ContentPage.BindingContext>
     <StackLayout>
-        <Label  Text="Заявление на отчисление" HorizontalTextAlignment="Center" FontSize="25"/>
-        <ListView ItemsSource="{Binding ResignationLetters}" SelectedItem="{Binding ResignationLetter}" VerticalScrollBarVisibility="Always" HorizontalScrollBarVisibility="Always" >
+
+        <ListView ItemsSource="{Binding ResignationLetters}" SelectedItem="{Binding ResignationLetter}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -29,8 +30,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Text="Изменить заявление" Command="{Binding ChangeLetter}"/>
-            <Button Grid.Column="1" Text="Удалить заявление" Command="{Binding DeleteLetter}"/>
+            <Button Text="Изменить заявление" Command="{Binding ChangeLetter}" Style="{StaticResource buttonStyle}"/>
+            <Button Grid.Column="1" Text="Удалить заявление" Command="{Binding DeleteLetter}" Style="{StaticResource buttonStyle}"/>
         </Grid>
     </StackLayout>
 </ContentPage>

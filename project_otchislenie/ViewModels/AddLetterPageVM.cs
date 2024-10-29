@@ -46,8 +46,11 @@ namespace project_otchislenie.ViewModels
         }
         internal void OnAppearing()
         {
-            GetStudents();
+            
             ResignationLetter = new ResignationLetter();
+            Students = new List<Student>();
+            Signal(nameof(Students));
+            GetStudents();
             Signal(nameof(ResignationLetter));
 
         }
