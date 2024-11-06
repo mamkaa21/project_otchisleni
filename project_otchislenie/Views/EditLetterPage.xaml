@@ -12,9 +12,9 @@
     </ContentPage.BindingContext>
     <VerticalStackLayout>
         <Label Text="Причина"/>
-        <Picker ItemsSource="{Binding Reasons}" SelectedItem="{Binding ResignationLetter.Reason}"/>
+        <Picker ItemsSource="{Binding Reasons}" SelectedItem="{Binding Resignationletter.Reason}"/>
         <Label Text="Дата подачи заявления"/>
-        <DatePicker Date="{Binding ResignationLetter.Date}" />
+        <DatePicker Date="{Binding Resignationletter.Date}" />
         <Label Text="Студент"/>
         <Picker ItemsSource="{Binding Students}" SelectedItem="{Binding Student}" />
         <Button Text="Сохранить" Command="{Binding SaveLetter}"  Style="{StaticResource buttonStyle}"/>

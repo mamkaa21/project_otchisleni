@@ -8,24 +8,29 @@ using System.Threading.Tasks;
 
 namespace project_otchislenie.Models
 {
-    public class ResignationLetter : BaseVM
+    public class Resignationletter : BaseVM
     {
         public int Id { get; set; }
-        public string Reason { get; set; }
-        public DateTime Date { get; set; } = DateTime.Now;
-        public int StudentId { get; set; }
+
+        public string? Reason { get; set; }
+
+        public DateTime? Date { get; set; } = DateTime.Now;
+
+        public int? IdStudent { get; set; }
+
+        public virtual Student? IdStudentNavigation { get; set; }
         [NotMapped]
         public Student Student { get; private set; }
 
         public override string ToString()
         {
 
-            return $"{Reason}, {Date}, {Student?.LastName}";
+            return $"{Reason}, {Date}, {Student?.Lastname}";
         }
 
         public async void SetStudent()
         {
-            Student = await DB.GetInstance().GetStudentById(StudentId);
+            Student = await DB.GetInstance().GetStudentById(IdStudent);
             Signal(nameof(Student));
         }
     }

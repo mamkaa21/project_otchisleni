@@ -11,7 +11,7 @@ namespace project_otchislenie.ViewModels
 {
     public class AddLetterPageVM : BaseVM
     {
-        public ResignationLetter ResignationLetter { get; set; } = new ResignationLetter();
+        public Resignationletter Resignationletter { get; set; } = new Resignationletter();
         public List<string> Reasons { get; set; }
         public Student Student { get; set; }
         public List<Student> Students { get; set; }
@@ -26,10 +26,10 @@ namespace project_otchislenie.ViewModels
             {
                 if (Student != null)
                 {
-                    ResignationLetter.StudentId = Student.Id;
+                    Resignationletter.IdStudent = Student.Id;
                 }
-                    await DB.GetInstance().AddResignationLetter(ResignationLetter);
-                    Signal(nameof(ResignationLetter));
+                    await DB.GetInstance().AddResignationletter(Resignationletter);
+                    Signal(nameof(Resignationletter));
                 await Shell.Current.GoToAsync("//MainPage");
             });
 
@@ -38,20 +38,20 @@ namespace project_otchislenie.ViewModels
         private async void GetStudents()
         {
             Students = await DB.GetInstance().GetListStudent();
-            if (ResignationLetter.StudentId != 0)
+            if (Resignationletter.IdStudent != 0)
             {
-                Student = Students.FirstOrDefault(s => s.Id == ResignationLetter.StudentId);
+                Student = Students.FirstOrDefault(s => s.Id == Resignationletter.IdStudent);
             }
             Signal(nameof(Students));
         }
         internal void OnAppearing()
         {
             
-            ResignationLetter = new ResignationLetter();
+            Resignationletter = new Resignationletter();
             Students = new List<Student>();
             Signal(nameof(Students));
             GetStudents();
-            Signal(nameof(ResignationLetter));
+            Signal(nameof(Resignationletter));
 
         }
     }

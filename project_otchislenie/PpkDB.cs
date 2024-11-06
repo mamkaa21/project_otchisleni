@@ -13,7 +13,7 @@ namespace project_otchislenie
         private readonly string filename;
         
         public DbSet<Student> Students { get; set; }
-        public DbSet<ResignationLetter> ResignationLetters { get; set; }
+        public DbSet<Resignationletter> Resignationletters { get; set; }
         public DbSet<User> Users { get; set; }
 
         public PpkDB(string filename)

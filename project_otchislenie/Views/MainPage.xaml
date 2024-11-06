@@ -12,14 +12,14 @@
     </ContentPage.BindingContext>
     <StackLayout>
 
-        <ListView ItemsSource="{Binding ResignationLetters}" SelectedItem="{Binding ResignationLetter}" >
+        <ListView ItemsSource="{Binding Resignationletters}" SelectedItem="{Binding Resignationletter}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal" Spacing="5" Padding="12">
                             <Label Text="{Binding Reason}" TextColor="MidnightBlue" />
                             <Label Text="{Binding Date, StringFormat='{}{0:dd.MM.yyyy}'}" TextColor="MidnightBlue"/>
-                            <Label Text="{Binding Student.LastName}" TextColor="MidnightBlue"/>
+                            <Label Text="{Binding Student.Lastname}" TextColor="MidnightBlue"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

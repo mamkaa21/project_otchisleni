@@ -9,19 +9,19 @@ using project_otchislenie.Views;
 
 namespace project_otchislenie.ViewModels
 {
-    [QueryProperty(nameof(ResignationLetter), "ResignationLetter")]
+    [QueryProperty(nameof(Resignationletter), "Resignationletter")]
     public class EditLetterPageVM : BaseVM
     {
-        private ResignationLetter resignationLetter;
+        private Resignationletter resignationletter;
 
-        public ResignationLetter ResignationLetter
+        public Resignationletter Resignationletter
         {
-            get => resignationLetter;
+            get => resignationletter;
             set
             {
-                resignationLetter = value;
+                resignationletter = value;
                 GetStudents();
-                Signal(nameof(ResignationLetter));
+                Signal(nameof(Resignationletter));
             }
         }
 
@@ -49,12 +49,12 @@ namespace project_otchislenie.ViewModels
             {
                 if (Student != null)
                 {
-                    ResignationLetter.StudentId = Student.Id;
+                    Resignationletter.IdStudent = Student.Id;
                 }
-                if (ResignationLetter.Id != 0)
+                if (Resignationletter.Id != 0)
                 {
-                    await DB.GetInstance().EditResignationLetter(ResignationLetter);
-                    Signal(nameof(ResignationLetter));
+                    await DB.GetInstance().EditResignationletter(Resignationletter);
+                    Signal(nameof(Resignationletter));
 
                 }
                 await Shell.Current.GoToAsync("//MainPage");
@@ -63,9 +63,9 @@ namespace project_otchislenie.ViewModels
         private async void GetStudents()
         {
             Students = await DB.GetInstance().GetListStudent();
-            if (ResignationLetter.StudentId != 0)
+            if (Resignationletter.IdStudent != 0)
             {
-                Student = Students.FirstOrDefault(s => s.Id == ResignationLetter.StudentId);
+                Student = Students.FirstOrDefault(s => s.Id == Resignationletter.IdStudent);
             }
             Signal(nameof(Students));
         }

@@ -13,9 +13,9 @@
     <VerticalStackLayout>
         <VerticalStackLayout>
             <Label Text="Имя"/>
-            <Entry Text="{Binding Student.FirstName}"/>
+            <Entry Text="{Binding Student.Firstname}"/>
             <Label Text="Фамилия"/>
-            <Entry Text="{Binding Student.LastName}"/>
+            <Entry Text="{Binding Student.Lastname}"/>
             <Label Text="Долги"/>
             <Stepper Value="{Binding Student.Debts}" ValueChanged="DebtsChanged"/>
             <Label Text="{Binding Student.Debts}"/>

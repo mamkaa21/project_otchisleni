@@ -6,7 +6,7 @@ namespace project_otchislenie
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute("ResignationLetter", typeof(EditLetterPage));
+            Routing.RegisterRoute("Resignationletter", typeof(EditLetterPage));
             Routing.RegisterRoute("Student", typeof(EditStudentPage));
             Routing.RegisterRoute("RegistrationPage", typeof(RegistrationPage));
             Routing.RegisterRoute("StudentPage", typeof(StudentPage));

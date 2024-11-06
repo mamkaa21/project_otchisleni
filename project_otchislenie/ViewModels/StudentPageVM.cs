@@ -16,6 +16,7 @@ namespace project_otchislenie.ViewModels
         public CommandVM DeleteStudent { get; }
         public StudentPageVM()
         {
+            
             EditStudent = new CommandVM(async () =>
             {
                 if (Student == null)

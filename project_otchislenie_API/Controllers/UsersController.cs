@@ -7,5 +7,7 @@ namespace project_otchislenie_API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+
+
     }
 }

@@ -11,8 +11,8 @@ namespace project_otchislenie.ViewModels
 {
     public class MainPageVM : BaseVM
     {
-        public List<ResignationLetter> ResignationLetters { get; set; }
-        public ResignationLetter ResignationLetter { get; set; }
+        public List<Resignationletter> Resignationletters { get; set; }
+        public Resignationletter Resignationletter { get; set; }
         public List<Student> Students { get; set; }
         public Student Student { get; set; }
         public CommandVM OpenListStudent { get; }
@@ -28,17 +28,17 @@ namespace project_otchislenie.ViewModels
             });
             DeleteLetter = new CommandVM( async () =>
             {
-                await DB.GetInstance().DeleteResignationLetterById(ResignationLetter);
+                await DB.GetInstance().DeleteResignationletterById(Resignationletter);
                 GetData();
-                Signal(nameof(ResignationLetter));
+                Signal(nameof(Resignationletter));
             });
             ChangeLetter = new CommandVM(async () =>
             {
                 Dictionary<string, object> dictionary = new Dictionary<string, object>
             {
-                {"ResignationLetter", ResignationLetter}
+                {"Resignationletter", Resignationletter}
             };
-                await Shell.Current.GoToAsync("ResignationLetter", dictionary);
+                await Shell.Current.GoToAsync("Resignationletter", dictionary);
             });
         }
         internal void OnAppearing()
@@ -47,8 +47,8 @@ namespace project_otchislenie.ViewModels
         }
         private async void GetData()
         {
-            ResignationLetters = await DB.GetInstance().GetListResignationLetter();
-            Signal(nameof(ResignationLetters)); 
+            Resignationletters = await DB.GetInstance().GetListResignationletter();
+            Signal(nameof(Resignationletters)); 
         }
     }
 }
