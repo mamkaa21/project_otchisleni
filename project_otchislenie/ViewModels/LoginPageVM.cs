@@ -16,16 +16,16 @@ namespace project_otchislenie.ViewModels
 
         public CommandVM OpenRegistrationPage { get; }
         public CommandVM EntryButton { get; }
-
         public LoginPageVM() 
         {
+            
             OpenRegistrationPage = new CommandVM(async() =>
             {
                 await Shell.Current.GoToAsync("RegistrationPage");
             });
             EntryButton = new CommandVM(async () =>
             {
-                Users = await DB.GetInstance().GetUsers();
+               DB.GetInstance().GetUsers();
                 var user = Users.FirstOrDefault(s => s.Login == Login && s.Password == Password);
 
                 if (user != null)

@@ -18,7 +18,7 @@ namespace project_otchislenie.ViewModels
         {
             AddUser = new CommandVM( async () =>
             {
-                Users = await DB.GetInstance().GetUsers();
+                DB.GetInstance().GetUsers();
                 var find = Users.FirstOrDefault(s => s.Login == User.Login);
                 Signal(nameof(Users));
                 if (find != null)
@@ -27,7 +27,7 @@ namespace project_otchislenie.ViewModels
                 }
                 else
                 {
-                    await DB.GetInstance().AddUser(User);
+                    DB.GetInstance().AddUser();
                     Signal(nameof(User));
                     await Shell.Current.GoToAsync("//LoginPage");
                 }

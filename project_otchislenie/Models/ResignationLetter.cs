@@ -30,7 +30,7 @@ namespace project_otchislenie.Models
 
         public async void SetStudent()
         {
-            Student = await DB.GetInstance().GetStudentById(IdStudent);
+            DB.GetInstance().GetStudentById();
             Signal(nameof(Student));
         }
     }

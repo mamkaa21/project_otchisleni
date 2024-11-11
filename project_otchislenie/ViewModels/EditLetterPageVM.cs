@@ -53,7 +53,7 @@ namespace project_otchislenie.ViewModels
                 }
                 if (Resignationletter.Id != 0)
                 {
-                    await DB.GetInstance().EditResignationletter(Resignationletter);
+                    DB.GetInstance().EditResignationletter();
                     Signal(nameof(Resignationletter));
 
                 }
@@ -62,7 +62,7 @@ namespace project_otchislenie.ViewModels
         }
         private async void GetStudents()
         {
-            Students = await DB.GetInstance().GetListStudent();
+            DB.GetInstance().GetListStudent();
             if (Resignationletter.IdStudent != 0)
             {
                 Student = Students.FirstOrDefault(s => s.Id == Resignationletter.IdStudent);
