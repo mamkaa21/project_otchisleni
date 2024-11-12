@@ -12,7 +12,7 @@ namespace project_otchislenie.ViewModels
     {
         public string Login { get; set; }
         public string Password { get; set; }
-        public List<User> Users { get; set; }
+        public User User { get; set; } =  new User();
 
         public CommandVM OpenRegistrationPage { get; }
         public CommandVM EntryButton { get; }
@@ -25,21 +25,18 @@ namespace project_otchislenie.ViewModels
             });
             EntryButton = new CommandVM(async () =>
             {
-               DB.GetInstance().GetUsers();
-                var user = Users.FirstOrDefault(s => s.Login == Login && s.Password == Password);
+                var check =  await DB.GetInstance().CheckLoginPassword(User);
 
-                if (user != null)
+                if (check != null)
                 {
                     Login = "";
                     Password = "";
-                    Signal(nameof(Users));
+                    Signal(nameof(User));
                     await Shell.Current.GoToAsync("//MainPage");
                     Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
                 }
                 else
-                {
                     await Application.Current.MainPage.DisplayAlert("Error", "Wrong Login or Password", "Ok");
-                }
             });
         }
         internal async void OnAppearing()

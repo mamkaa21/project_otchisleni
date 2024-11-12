@@ -28,7 +28,7 @@ namespace project_otchislenie.ViewModels
                 {
                     Resignationletter.IdStudent = Student.Id;
                 }
-                DB.GetInstance().AddResignationletter();
+                await DB.GetInstance().AddResignationletter();
                 Signal(nameof(Resignationletter));
                 await Shell.Current.GoToAsync("//MainPage");
             });
@@ -37,7 +37,7 @@ namespace project_otchislenie.ViewModels
 
         public async void GetStudents()
         {
-            DB.GetInstance().GetListStudent();
+            await DB.GetInstance().GetListStudent();
             if (Resignationletter.IdStudent != 0)
             {
                 Student = Students.FirstOrDefault(s => s.Id == Resignationletter.IdStudent);

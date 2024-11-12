@@ -16,7 +16,7 @@ namespace project_otchislenie.Models
 
         public DateTime? Date { get; set; } = DateTime.Now;
 
-        public int? IdStudent { get; set; }
+        public int IdStudent { get; set; }
 
         public virtual Student? IdStudentNavigation { get; set; }
         [NotMapped]
@@ -30,7 +30,7 @@ namespace project_otchislenie.Models
 
         public async void SetStudent()
         {
-            DB.GetInstance().GetStudentById();
+            Student = await DB.GetInstance().GetStudentById(IdStudent);
             Signal(nameof(Student));
         }
     }

@@ -16,22 +16,11 @@ namespace project_otchislenie.ViewModels
 
         public RegistrationPageVM()
         {
-            AddUser = new CommandVM( async () =>
+            AddUser = new CommandVM(async () =>
             {
-                DB.GetInstance().GetUsers();
-                var find = Users.FirstOrDefault(s => s.Login == User.Login);
-                Signal(nameof(Users));
-                if (find != null)
-                {
-                    await Application.Current.MainPage.DisplayAlert("шибюка", "Такой пользователь уже существует", "ок");         
-                }
-                else
-                {
-                    DB.GetInstance().AddUser();
-                    Signal(nameof(User));
-                    await Shell.Current.GoToAsync("//LoginPage");
-                }
-               
+                await DB.GetInstance().AddUser(User);
+                Signal(nameof(User));
+                await Shell.Current.GoToAsync("//LoginPage");
             });
         }
         internal void OnAppearing()

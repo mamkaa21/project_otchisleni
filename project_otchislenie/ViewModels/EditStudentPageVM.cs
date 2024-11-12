@@ -31,7 +31,7 @@ namespace project_otchislenie.ViewModels
             {
                 if (Student.Id != 0)
                 {
-                    DB.GetInstance().EditStudent();
+                    await DB.GetInstance().EditStudent();
                     Signal(nameof(Student));
                 }
                 await Shell.Current.GoToAsync("//StudentPage");

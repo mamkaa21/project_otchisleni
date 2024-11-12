@@ -23,7 +23,7 @@ namespace project_otchislenie
         private List<Student> Students { get; set; }
         private Student Student { get; set; }
         private Resignationletter Resignationletter { get; set; }
-        private User User { get; set; }
+        public User User { get; set; } =  new User();
         private List<User> Users { get; set; }
 
         private int LastIdStudent = 1;
@@ -33,39 +33,60 @@ namespace project_otchislenie
 
         public DB()
         {
-            client.BaseAddress = new Uri("http://10.0.2.2:5246/");
+            client.BaseAddress = new Uri("http://10.0.2.2:5246/api/");
         }
+
         public static DB GetInstance()
         {
             if (instance == null)
                 instance = new DB();
             return instance;
         }
-        public async void GetUsers()
+
+        public async Task<User> CheckLoginPassword(User user)
+        {
+            var arg = JsonSerializer.Serialize(user);
+            var responce = await client.PostAsync($"Users/CheckLoginPassword", new StringContent(arg, Encoding.UTF8, "application/json"));
+            if (responce.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                var result = await responce.Content.ReadAsStringAsync();
+                await Application.Current.MainPage.DisplayAlert("Ошибgка", $"{result}", "ок");
+                return null;
+            }
+            else
+            {
+                var result =  await responce.Content.ReadFromJsonAsync<User>();
+                return result;
+
+            }
+        }
+
+       
+        public async Task<List<User>> GetUsers()
         {
             var responce = await client.GetAsync($"Users/GetUsers");
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Ошибка", $"{result}", "ок");
-                return;
+                await Application.Current.MainPage.DisplayAlert("Ошибlка", $"{result}", "ок");
+                return null;
             }
             else
             {
                 var users = await responce.Content.ReadFromJsonAsync<List<User>>();
-                Users = new List<User>(users);
+                return users;
 
             }
         }
 
-        public async void GetListResignationletter()
+        public async Task<List<Resignationletter>> GetListResignationletter()
         {
             var responce = await client.GetAsync($"Resignationletters/GetResignationletters");
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Ошибка", $"{result}", "ок");
-                return;
+                await Application.Current.MainPage.DisplayAlert("Оши1бка", $"{result}", "ок");
+                return null;
             }
             else
             {
@@ -74,33 +95,33 @@ namespace project_otchislenie
                 {
                     item.SetStudent();
                 }
-                Resignationletters = new List<Resignationletter>(letters);
+                return letters;
             }
         }
 
-        public async void GetListStudent()
+        public async Task<List<Student>> GetListStudent()
         {
             var responce = await client.GetAsync($"Students/GetStudents");
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Ошибка", $"{result}", "ок");
-                return;
+                await Application.Current.MainPage.DisplayAlert("О2шибка", $"{result}", "ок");
+                return null;
             }
             else
             {
                 var students = await responce.Content.ReadFromJsonAsync<List<Student>>();
-                Students = new List<Student>(students);
+                return students;
             }
         }
 
-        public async void GetResignationletterById()
+        public async Task GetResignationletterById()
         {
             var responce = await client.GetAsync($"Resignationletters/GetResignationletterById");
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Ошибка", $"{result}", "ок");
+                await Application.Current.MainPage.DisplayAlert("Ош3ибка", $"{result}", "ок");
                 return;
             }
             else
@@ -110,30 +131,30 @@ namespace project_otchislenie
             }
         }
 
-        public async void GetStudentById()
+        public async Task<Student> GetStudentById(int id)
         {
-            var responce = await client.GetAsync($"Students/GetStudentById");
+            var responce = await client.GetAsync($"Students/GetStudentById/{id}");
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Ошибка", $"{result}", "ок");
-                return;
+                await Application.Current.MainPage.DisplayAlert("Ош4ибка", $"{result}", "ок");
+                return null;
             }
             else
             {
-                var letter = await responce.Content.ReadAsStringAsync();
-                return;
+                var student = await responce.Content.ReadFromJsonAsync<Student>();
+                return student;
             }
         }
 
-        public async void AddResignationletter()
+        public async Task AddResignationletter()
         {
             var arg = JsonSerializer.Serialize(Resignationletter);
             var responce = await client.PostAsync($"Resignationletters/AddResignationletter", new StringContent(arg, Encoding.UTF8, "application/json"));
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Ошибка", $"{result}", "ок");
+                await Application.Current.MainPage.DisplayAlert("Оши5бка", $"{result}", "ок");
                 return;
             }
             else
@@ -143,14 +164,14 @@ namespace project_otchislenie
             }
         }
 
-        public async void AddUser()
+        public async Task AddUser(User user)
         {
-            var arg = JsonSerializer.Serialize(User);
+            var arg = JsonSerializer.Serialize(user);
             var responce = await client.PostAsync($"Users/AddUser", new StringContent(arg, Encoding.UTF8, "application/json"));
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Ошибка", $"{result}", "ок");
+                await Application.Current.MainPage.DisplayAlert("Ошибк6а", $"{result}", "ок");
                 return;
             }
             else
@@ -160,14 +181,14 @@ namespace project_otchislenie
             }
         }
 
-        public async void AddStudent()
+        public async Task AddStudent()
         {
             var arg = JsonSerializer.Serialize(Student);
             var responce = await client.PostAsync($"Students/AddStudent", new StringContent(arg, Encoding.UTF8, "application/json"));
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Ошибка", $"{result}", "ок");
+                await Application.Current.MainPage.DisplayAlert("Оши7бка", $"{result}", "ок");
                 return;
             }
             else
@@ -177,14 +198,14 @@ namespace project_otchislenie
             }
         }
 
-        public async void EditResignationletter()
+        public async Task EditResignationletter()
         {
             var arg = JsonSerializer.Serialize(Resignationletter);
             var responce = await client.PutAsync($"Resignationletters/EditResignationletter", new StringContent(arg, Encoding.UTF8, "application/json"));
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Ошибка", $"{result}", "ок");
+                await Application.Current.MainPage.DisplayAlert("Ошиб8ка", $"{result}", "ок");
                 return;
             }
             else
@@ -194,14 +215,14 @@ namespace project_otchislenie
             }
         }
 
-        public async void EditStudent()
+        public async Task EditStudent()
         {
             var arg = JsonSerializer.Serialize(Student);
             var responce = await client.PutAsync($"Students/EditStudent", new StringContent(arg, Encoding.UTF8, "application/json"));
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Ошибка", $"{result}", "ок");
+                await Application.Current.MainPage.DisplayAlert("Ошиб9ка", $"{result}", "ок");
                 return;
             }
             else
@@ -211,13 +232,13 @@ namespace project_otchislenie
             }
         }
 
-        public async void DeleteResignationletter()
+        public async Task DeleteResignationletter()
         {
             var responce = await client.DeleteAsync($"Resignationletters/DeleteResignationletter");
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Ошибка", $"{result}", "ок");
+                await Application.Current.MainPage.DisplayAlert("Ошиб0ка", $"{result}", "ок");
                 return;
             }
             else
@@ -227,13 +248,13 @@ namespace project_otchislenie
             }
         }
 
-        public async void DeleteStudent()
+        public async Task DeleteStudent()
         {
             var responce = await client.DeleteAsync($"Students/DeleteStudent");
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Ошибка", $"{result}", "ок");
+                await Application.Current.MainPage.DisplayAlert("Ошиб11ка", $"{result}", "ок");
                 return;
             }
             else

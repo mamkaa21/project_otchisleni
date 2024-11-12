@@ -37,7 +37,7 @@ namespace project_otchislenie.ViewModels
                     return;
                 else
                 {
-                    DB.GetInstance().DeleteStudent();
+                    await DB.GetInstance().DeleteStudent();
                     GetData();
                 }
             });
@@ -48,7 +48,7 @@ namespace project_otchislenie.ViewModels
         }
         private async void GetData()
         {
-            DB.GetInstance().GetListStudent();
+            Students = await DB.GetInstance().GetListStudent();
             Signal(nameof(Students));
         }
     }

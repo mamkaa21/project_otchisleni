@@ -28,7 +28,7 @@ namespace project_otchislenie.ViewModels
             });
             DeleteLetter = new CommandVM( async () =>
             {
-                DB.GetInstance().DeleteResignationletter();
+                await DB.GetInstance().DeleteResignationletter();
                 GetData();
                 Signal(nameof(Resignationletter));
             });
@@ -47,7 +47,7 @@ namespace project_otchislenie.ViewModels
         }
         private async void GetData()
         {
-            DB.GetInstance().GetListResignationletter();
+            Resignationletters = await DB.GetInstance().GetListResignationletter();
             Signal(nameof(Resignationletters)); 
         }
     }
