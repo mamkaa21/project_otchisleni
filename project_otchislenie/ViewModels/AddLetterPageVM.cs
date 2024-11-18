@@ -28,7 +28,7 @@ namespace project_otchislenie.ViewModels
                 {
                     Resignationletter.IdStudent = Student.Id;
                 }
-                await DB.GetInstance().AddResignationletter();
+                await DB.GetInstance().AddResignationletter(Resignationletter);
                 Signal(nameof(Resignationletter));
                 await Shell.Current.GoToAsync("//MainPage");
             });
@@ -37,18 +37,19 @@ namespace project_otchislenie.ViewModels
 
         public async void GetStudents()
         {
-            await DB.GetInstance().GetListStudent();
+            Students = await DB.GetInstance().GetListStudent();
             if (Resignationletter.IdStudent != 0)
             {
                 Student = Students.FirstOrDefault(s => s.Id == Resignationletter.IdStudent);
             }
             Signal(nameof(Students));
+            Signal(nameof(Student));
         }
         internal void OnAppearing()
         {
 
             Resignationletter = new Resignationletter();
-            Students = new List<Student>();
+            //Students = List<Student>();
             Signal(nameof(Students));
             GetStudents();
             Signal(nameof(Resignationletter));

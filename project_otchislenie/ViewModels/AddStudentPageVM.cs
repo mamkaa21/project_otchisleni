@@ -18,7 +18,7 @@ namespace project_otchislenie.ViewModels
         {
             SaveStudent = new CommandVM(async () =>
             {
-                    await DB.GetInstance().AddStudent();
+                    await DB.GetInstance().AddStudent(Student);
                     Signal(nameof(Student));
                     await Shell.Current.GoToAsync("//StudentPage");
               

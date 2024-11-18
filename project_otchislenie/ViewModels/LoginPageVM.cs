@@ -26,12 +26,10 @@ namespace project_otchislenie.ViewModels
             EntryButton = new CommandVM(async () =>
             {
                 var check =  await DB.GetInstance().CheckLoginPassword(User);
-
                 if (check != null)
                 {
                     Login = "";
                     Password = "";
-                    Signal(nameof(User));
                     await Shell.Current.GoToAsync("//MainPage");
                     Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
                 }
@@ -39,11 +37,12 @@ namespace project_otchislenie.ViewModels
                     await Application.Current.MainPage.DisplayAlert("Error", "Wrong Login or Password", "Ok");
             });
         }
-        internal async void OnAppearing()
+        public void OnAppearing()
         {
-            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
             Signal(nameof(Login));
-            Signal(nameof(Password));   
+            Signal(nameof(Password));
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+            
         }
     }
 }

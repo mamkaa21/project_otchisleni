@@ -37,7 +37,7 @@ namespace project_otchislenie.ViewModels
                     return;
                 else
                 {
-                    await DB.GetInstance().DeleteStudent();
+                    await DB.GetInstance().DeleteStudent(Student.Id);
                     GetData();
                 }
             });

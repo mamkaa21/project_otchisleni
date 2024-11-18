@@ -10,10 +10,6 @@ namespace project_otchislenie.Views
             InitializeComponent();
             BindingContext = new EditLetterPageVM();
         }
-        protected override void OnAppearing()
-        {
-            ((EditLetterPageVM)BindingContext).OnAppearing();
-        }
     }
 
 }

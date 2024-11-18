@@ -115,9 +115,9 @@ namespace project_otchislenie
             }
         }
 
-        public async Task GetResignationletterById()
+        public async Task GetResignationletterById(int id)
         {
-            var responce = await client.GetAsync($"Resignationletters/GetResignationletterById");
+            var responce = await client.GetAsync($"Resignationletters/GetResignationletterById/{id}");
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
@@ -147,9 +147,9 @@ namespace project_otchislenie
             }
         }
 
-        public async Task AddResignationletter()
+        public async Task AddResignationletter(Resignationletter resignationletter)
         {
-            var arg = JsonSerializer.Serialize(Resignationletter);
+            var arg = JsonSerializer.Serialize(resignationletter);
             var responce = await client.PostAsync($"Resignationletters/AddResignationletter", new StringContent(arg, Encoding.UTF8, "application/json"));
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
@@ -181,9 +181,9 @@ namespace project_otchislenie
             }
         }
 
-        public async Task AddStudent()
+        public async Task AddStudent(Student student)
         {
-            var arg = JsonSerializer.Serialize(Student);
+            var arg = JsonSerializer.Serialize(student);
             var responce = await client.PostAsync($"Students/AddStudent", new StringContent(arg, Encoding.UTF8, "application/json"));
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
@@ -198,9 +198,9 @@ namespace project_otchislenie
             }
         }
 
-        public async Task EditResignationletter()
+        public async Task EditResignationletter(Resignationletter resignationletter)
         {
-            var arg = JsonSerializer.Serialize(Resignationletter);
+            var arg = JsonSerializer.Serialize(resignationletter);
             var responce = await client.PutAsync($"Resignationletters/EditResignationletter", new StringContent(arg, Encoding.UTF8, "application/json"));
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
@@ -215,9 +215,9 @@ namespace project_otchislenie
             }
         }
 
-        public async Task EditStudent()
+        public async Task EditStudent(Student student)
         {
-            var arg = JsonSerializer.Serialize(Student);
+            var arg = JsonSerializer.Serialize(student);
             var responce = await client.PutAsync($"Students/EditStudent", new StringContent(arg, Encoding.UTF8, "application/json"));
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
@@ -232,9 +232,9 @@ namespace project_otchislenie
             }
         }
 
-        public async Task DeleteResignationletter()
+        public async Task DeleteResignationletter(int id)
         {
-            var responce = await client.DeleteAsync($"Resignationletters/DeleteResignationletter");
+            var responce = await client.DeleteAsync($"Resignationletters/DeleteResignationletter/{id}");
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
@@ -248,9 +248,9 @@ namespace project_otchislenie
             }
         }
 
-        public async Task DeleteStudent()
+        public async Task DeleteStudent(int id)
         {
-            var responce = await client.DeleteAsync($"Students/DeleteStudent");
+            var responce = await client.DeleteAsync($"Students/DeleteStudent/{id}");
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
