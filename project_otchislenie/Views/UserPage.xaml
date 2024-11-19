@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:m="clr-namespace:project_otchislenie.Models"
+             xmlns:vm="clr-namespace:project_otchislenie.ViewModels"
+             xmlns:v="clr-namespace:project_otchislenie.Views"
+             x:Class="project_otchislenie.Views.UserPage"
+             Title="UserPage">
+    <ContentPage.BindingContext>
+        <vm:UserPageVM/>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout>
+        <Label 
+            Text="Личный кабинет"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Image Source="me.jpg" WidthRequest="200"/>
+        <Label Text="Логин"/>
+        <Label Text="{Binding User.Login}"/>
+        <Label Text="Пароль"/>
+        <Entry Text="{Binding User.Password}" Placeholder="введите пароль"/>
+        <Button Text="Сменить пароль" Command="{Binding SavePassword}"/>
+
+    </VerticalStackLayout>
+</ContentPage>

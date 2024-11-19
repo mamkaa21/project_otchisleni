@@ -60,7 +60,11 @@
                 Route="AddStudentPage" />
         </Tab>
     </FlyoutItem>
+    <FlyoutItem Title="Личный профиль"
+                Icon="info.png">
+        <ShellContent 
+                ContentTemplate="{DataTemplate v:UserPage}"
+                Route="User" />
+    </FlyoutItem>
 
-   
-    
 </Shell>

@@ -61,7 +61,26 @@ namespace project_otchislenie
             }
         }
 
-       
+        public async Task EditUserPassword(User user)
+        {
+            var arg = JsonSerializer.Serialize(user);
+            var responce = await client.PutAsync($"Users/EditUserPassword", new StringContent(arg, Encoding.UTF8, "application/json"));
+            if (responce.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                var result = await responce.Content.ReadAsStringAsync();
+                await Application.Current.MainPage.DisplayAlert("Ошиб12ка", $"{result}", "ок");
+                return;
+            }
+            else
+            {
+                var result = await responce.Content.ReadAsStringAsync();
+                await Application.Current.MainPage.DisplayAlert("Успешно", $"{result}", "ок");
+            }
+
+        }
+
+
+
         public async Task<List<User>> GetUsers()
         {
             var responce = await client.GetAsync($"Users/GetUsers");
@@ -164,7 +183,7 @@ namespace project_otchislenie
             }
         }
 
-        public async Task AddUser(User user)
+        public async Task<User> AddUser(User user)
         {
             var arg = JsonSerializer.Serialize(user);
             var responce = await client.PostAsync($"Users/AddUser", new StringContent(arg, Encoding.UTF8, "application/json"));
@@ -172,12 +191,14 @@ namespace project_otchislenie
             {
                 var result = await responce.Content.ReadAsStringAsync();
                 await Application.Current.MainPage.DisplayAlert("Ошибк6а", $"{result}", "ок");
-                return;
+                return null;
+                
             }
             else
             {
-                var result = await responce.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Успешно", $"{result}", "ок");
+                var lastuser = await responce.Content.ReadFromJsonAsync<User>();
+                return lastuser;
+
             }
         }
 
@@ -251,10 +272,16 @@ namespace project_otchislenie
         public async Task DeleteStudent(int id)
         {
             var responce = await client.DeleteAsync($"Students/DeleteStudent/{id}");
+            if (responce.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                var result = await responce.Content.ReadAsStringAsync();
+                await Application.Current.MainPage.DisplayAlert("Ошиб11ка", "Такого пользователя не существует", "ок");
+                return;
+            }
             if (responce.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 var result = await responce.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Ошиб11ка", $"{result}", "ок");
+                await Application.Current.MainPage.DisplayAlert("Ошиб11ка", "Вы не можете удалить студента, пока у него есть заявления", "ок");
                 return;
             }
             else
